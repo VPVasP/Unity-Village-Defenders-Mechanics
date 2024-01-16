@@ -23,6 +23,8 @@ public class GrowVegetable : MonoBehaviour,IVegetable
 
     private RaycastHit hit;
     private bool readytoHarvest = false;
+    [SerializeField] float groundDistance = 0.6f; //the ground distance value
+    public LayerMask mudMask; //layermask for the mud
     private void Start()
     {
         //setting up the UI
@@ -40,6 +42,8 @@ public class GrowVegetable : MonoBehaviour,IVegetable
         aud = GetComponent<AudioSource>();
         aud.loop = false;
         aud.playOnAwake = false;
+        mudMask = 1 << LayerMask.NameToLayer("Mud");
+        gameObject.tag = "Vegetable";
     }
     #region growVeggie
     //function that handles the growth of our vegetable and the UI
@@ -60,6 +64,7 @@ public class GrowVegetable : MonoBehaviour,IVegetable
     {
         return timeLeft == 0;
     }
+   
     //function that handles the harvesting of the vegggie
     public void Harvest()
     {
@@ -68,11 +73,14 @@ public class GrowVegetable : MonoBehaviour,IVegetable
         {
             ScriptableVegetables harvestedVegetable = scriptableveg;
             harvestedVegetable.quantity += 1;
-
+            
             aud.clip = veggieSoundEffect;
             aud.Play();
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+            gameObject.transform.position = new Vector3(gameObject.transform.position.z, gameObject.transform.position.y + 0.2f, gameObject.transform.position.z);
             Destroy(growVegetablePanel, 1.5f);
             Destroy(this.gameObject, 1.5f);
+           
         }
     }
 
@@ -99,4 +107,5 @@ public class GrowVegetable : MonoBehaviour,IVegetable
             }
         }
     }
+   
 }

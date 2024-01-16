@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - Mud
+  - Vegetable
   layers:
   - Default
   - TransparentFX

@@ -8,7 +8,7 @@ public class FarmingManager : MonoBehaviour
     public LayerMask mudMask;
     public RaycastHit hit;
     public ScriptableVegetables[] vegetableScriptable;
-    [SerializeField] private Vector3 ypos = new Vector3(0, 2, 0);
+    [SerializeField] private Vector3 ypos = new Vector3(0,0.5f, 0);
     private void Awake()
     {
         if (instance == null)

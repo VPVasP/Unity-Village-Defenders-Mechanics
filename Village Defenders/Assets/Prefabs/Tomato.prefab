@@ -147,9 +147,10 @@ GameObject:
   - component: {fileID: 4186912863480086838}
   - component: {fileID: 5218060383427216740}
   - component: {fileID: 1234491237096033977}
+  - component: {fileID: -5009659996042794092}
   m_Layer: 0
   m_Name: Tomato
-  m_TagString: Untagged
+  m_TagString: Vegetable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -261,6 +262,37 @@ MonoBehaviour:
   growVegetableText: {fileID: 8959249388204261315, guid: abb2589da46697d4295d4bb5683315c6, type: 3}
   aud: {fileID: 0}
   veggieSoundEffect: {fileID: 0}
+  groundDistance: 0.6
+  mudMask:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!54 &-5009659996042794092
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5200857969662234094}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &5442481959960350533
 GameObject:
   m_ObjectHideFlags: 0

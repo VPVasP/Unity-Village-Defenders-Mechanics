@@ -20,4 +20,20 @@ public class Mud : MonoBehaviour
     {
         return canBePlanted;
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Vegetable"))
+        {
+            canBePlanted = false;
+            Debug.Log("Touching");
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.CompareTag("Vegetable"))
+        {
+            canBePlanted =true;
+            Debug.Log("Left");
+        }
+    }
 }
