@@ -8,4 +8,5 @@ public class ScriptableVegetables : ScriptableObject
     public int veggieID;
     public int veggieMoraleGiver;
     public GameObject veggiePrefab;
+    public int quantity;
 }

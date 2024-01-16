@@ -16,6 +16,7 @@ public class DefenceManagerPlacement : MonoBehaviour
     {
         instance = this;
     }
+    private void Start()
     {
         pressKeyText.gameObject.SetActive(false);
         foreach (GameObject position in positions)

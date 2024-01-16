@@ -7,7 +7,7 @@ public class PositionPlacement : MonoBehaviour
     public GameObject objectToInstantiate;
     public string keyToSpawn;
     private TextMeshProUGUI pressKeyText;
-  [SerializeField]  private Rigidbody rb;
+    [SerializeField]  private Rigidbody rb;
     private void Start()
     {
         hasBeenPlaced = false;
