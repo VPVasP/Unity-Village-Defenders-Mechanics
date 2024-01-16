@@ -25,12 +25,12 @@ public class VeggiePanel : MonoBehaviour
 
         if (GameManager.instance.coins >= scriptableVegs.veggiePrice)
         {
-           GameManager.instance.coins -= scriptableVegs.veggiePrice;
+            GameManager.instance.coins -= scriptableVegs.veggiePrice;
             FarmingManager.instance.PlantVegetable(scriptableVegs.veggieID);
             GameManager.instance.generalshopPanel.SetActive(false);
             GameManager.instance.veggiesScriptable.Add(scriptableVegs);
             Debug.Log("Bought item" + scriptableVegs.name);
-         
+            ShopUI.instance.ExitShop();
         }
     }
 

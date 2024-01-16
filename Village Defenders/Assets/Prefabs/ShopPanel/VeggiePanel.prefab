@@ -571,7 +571,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptableVegs: {fileID: 11400000, guid: 1a723540785d6e3439e3bddca6cb38b3, type: 2}
   veggieName: {fileID: 3704417911390276548}
-  veggieImage: {fileID: 0}
+  veggieImage: {fileID: 5121800667364834949}
   veggiePriceText: {fileID: 4877235915252275378}
   button: {fileID: 0}
 --- !u!1 &8913393105375668290
