@@ -16,5 +16,6 @@ MonoBehaviour:
   veggiePrice: 5
   spriteImage: {fileID: 21300000, guid: b90f8d67952619b4bb70aeef881c3b42, type: 3}
   veggieID: 0
-  veggieMoraleGiver: 10
+  veggieMoraleGiver: 5
   veggiePrefab: {fileID: 5200857969662234094, guid: 56f44fccd33694244adcdae898123199, type: 3}
+  quantity: 2

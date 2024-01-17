@@ -10,13 +10,15 @@ public class VeggiePanel : MonoBehaviour
     public TextMeshProUGUI veggieName;
     public Image veggieImage;
     public TextMeshProUGUI veggiePriceText;
+    public TextMeshProUGUI moraleGiverText;
     [SerializeField] Button button;
     private void Start()
     {
         button = GetComponentInChildren<Button>();
         veggieName.text = scriptableVegs.name;
         veggieImage.sprite = scriptableVegs.spriteImage;
-        veggiePriceText.text = scriptableVegs.veggiePrice.ToString();
+        veggiePriceText.text = "Price " + scriptableVegs.veggiePrice.ToString();
+        moraleGiverText.text ="Morale " + scriptableVegs.veggieMoraleGiver.ToString();
         button.onClick.AddListener(BuyItem);
 
     }

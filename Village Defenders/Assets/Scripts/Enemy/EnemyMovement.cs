@@ -57,7 +57,7 @@ public class EnemyMovement : MonoBehaviour
         if (closestTarget != null)
         {
             float distanceToTarget = Vector3.Distance(transform.position, closestTarget.position);
-            Debug.Log(distanceToTarget);
+          //  Debug.Log(distanceToTarget);
             if (distanceToTarget > minimumDistance)
             {
                 MoveTowardsTarget(closestTarget.position);

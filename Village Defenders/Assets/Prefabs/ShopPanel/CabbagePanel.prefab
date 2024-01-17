@@ -624,7 +624,7 @@ GameObject:
   - component: {fileID: 6113981912805184635}
   - component: {fileID: 2743567027667661760}
   m_Layer: 5
-  m_Name: TomatoPanel
+  m_Name: CabbagePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -704,7 +704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3544cc50016a78843870da231018fdaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptableVegs: {fileID: 11400000, guid: 1a723540785d6e3439e3bddca6cb38b3, type: 2}
+  scriptableVegs: {fileID: 11400000, guid: 9496be9cadadcfa48b7a60ec1e665bae, type: 2}
   veggieName: {fileID: 3704417911390276548}
   veggieImage: {fileID: 5121800667364834949}
   veggiePriceText: {fileID: 4877235915252275378}

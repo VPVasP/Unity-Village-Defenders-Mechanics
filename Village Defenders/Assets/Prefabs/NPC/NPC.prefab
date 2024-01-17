@@ -295,8 +295,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 35.5}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 1.388, y: 40}
+  m_SizeDelta: {x: 281.679, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &310630187117801059
 CanvasRenderer:
@@ -557,7 +557,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8862304431646130201}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
@@ -567,7 +567,7 @@ RectTransform:
   - {fileID: 594055250851379751}
   - {fileID: 1867078547385366235}
   m_Father: {fileID: 8270367051698065364}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -706,6 +706,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5589390804763689965}
   m_SourcePrefab: {fileID: 100100000, guid: ded0f5d766f8d804b8df47ee9b0fa66a, type: 3}
+--- !u!95 &2849364387475432104 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: ded0f5d766f8d804b8df47ee9b0fa66a, type: 3}
+  m_PrefabInstance: {fileID: 8565965761105862457}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8172578690503473362 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ded0f5d766f8d804b8df47ee9b0fa66a, type: 3}
@@ -729,6 +734,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcWalkSpeed: 2.5
+  canvas: {fileID: 0}
+  npcRotateSpeed: 180
 --- !u!114 &5589390804763689965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -748,3 +755,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f731e8affccbf3e4fb5cfc33c50b57e1, type: 3}
   - {fileID: 21300000, guid: 79e505840fb612345b1f900b25f6dc91, type: 3}
   - {fileID: 21300000, guid: e9da14f224626ca43bad0001d10e537b, type: 3}
+  isDead: 0
+  moraleMeter: 0
+  anim: {fileID: 2849364387475432104}
+  npcMovement: {fileID: 6091171073266431935}

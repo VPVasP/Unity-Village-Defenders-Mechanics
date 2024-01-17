@@ -7,12 +7,14 @@ public class NPC : MonoBehaviour
     public float npcWalkSpeed = 5f;
     private Vector3 targetLocation;
     private string npcTag = "NPC";
-    private Canvas canvas;
+   [SerializeField] private Canvas canvas;
     private Transform mainCamera;
+    [SerializeField] private float npcRotateSpeed = 180;
     void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        canvas = GetComponentInChildren<Canvas>();
         targetLocation = RentacleZone.instance.GetRandomPoint();
         gameObject.tag = npcTag;
         PopulationManager.instace.population += 1;
@@ -23,14 +25,19 @@ public class NPC : MonoBehaviour
     void Update()
     {
         MoveTowardsTarget();
+        CanvasFaceCamera();
     }
 
    private void MoveTowardsTarget()
     {
         if (transform.position != targetLocation)
         {
+            Vector3 direction = (targetLocation - transform.position).normalized;
             var step = npcWalkSpeed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, targetLocation, step);
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, npcRotateSpeed * Time.deltaTime);
+
         }
         else
         {
