@@ -10,7 +10,7 @@ public class DefenceManagerPlacement : MonoBehaviour
     public static DefenceManagerPlacement instance;
     public Color emptyPositionColor;
     public string[] keysToPress;
-   [SerializeField] private TextMeshProUGUI pressKeyText;
+    [SerializeField] private TextMeshProUGUI pressKeyText;
     public bool canPressKey;
     private void Awake()
     {

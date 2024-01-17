@@ -24,6 +24,11 @@ public class EnemiesManager : MonoBehaviour
     [SerializeField] private Transform[] SpawnPositions; //our spawn positions transform
     private bool hasSpawnedEnemies = false; //bool to check if enemies have been spawned
     private string enemiesString = "Total Alive Enemies ";
+    [Header("Audio")]
+    [SerializeField] private AudioSource mainMusic;
+    [SerializeField] private AudioClip mainMusicAudioClip;
+    [SerializeField] private AudioClip battleMusicAudioClip;
+    [SerializeField] private GameObject enemiesUI;
     private void Start()
     {
         RenderSettings.skybox = SkyboxMaterials[0]; //we set our skybox material array to 0 because it is day
@@ -33,6 +38,10 @@ public class EnemiesManager : MonoBehaviour
         enemiesLeftText.gameObject.SetActive(false);
         enemiesRightText.gameObject.SetActive(false);
         enemiesDownText.gameObject.SetActive(false);
+        mainMusic.clip = mainMusicAudioClip;
+        mainMusic.loop = true;
+        mainMusic.playOnAwake = true;
+        enemiesUI.SetActive(false);
     }
     private void Update()
     {
@@ -61,10 +70,10 @@ public class EnemiesManager : MonoBehaviour
                     totalEnemiesSpawned++;
                 }
 
-                Debug.Log($"Spawn Point {i + 1}: {enemiesToBeSpawned} enemies spawned");
+              
             }
 
-
+            enemiesUI.SetActive(true);
             totalEnemiesText.gameObject.SetActive(true);
             enemiesUpText.gameObject.SetActive(true);
             enemiesLeftText.gameObject.SetActive(true);
@@ -134,6 +143,8 @@ public class EnemiesManager : MonoBehaviour
                 break;
             case 3:
                 //now that night happens we update the daysnighttext
+                mainMusic.clip = battleMusicAudioClip;
+                mainMusic.Play();
                 dayNightsText.text = daysNightString + daysPassed.ToString();
                 Debug.Log("NightHappens");
                 isNight = true; //we check if it is night 

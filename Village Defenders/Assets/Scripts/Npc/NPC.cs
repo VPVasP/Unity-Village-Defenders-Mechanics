@@ -16,6 +16,8 @@ public class NPC : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         targetLocation = RentacleZone.instance.GetRandomPoint();
         gameObject.tag = npcTag;
+        PopulationManager.instace.population += 1;
+        PopulationManager.instace.UpdatePopulationUI();
     }
 
     void Update()
