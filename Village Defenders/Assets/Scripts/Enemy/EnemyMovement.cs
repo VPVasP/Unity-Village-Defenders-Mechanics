@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
@@ -21,7 +22,7 @@ public class EnemyMovement : MonoBehaviour
     private AudioSource aud;
     [SerializeField] private AudioClip[] enemyAudios;
     private Animator anim;
-
+    [SerializeField] private GameObject deathEffect;
     private void Start()
     {
         GameObject[] targetObjects = GameObject.FindGameObjectsWithTag("Wall");
@@ -115,7 +116,14 @@ public class EnemyMovement : MonoBehaviour
 
         return bestTarget;
     }
-
+    public void EnemyDeath()
+    {
+    GameObject deathEffectClone = Instantiate(deathEffect, transform.position, Quaternion.identity);
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        movementSpeed=0;
+        Destroy(deathEffectClone, 0.8f);
+        Destroy(gameObject, 1f);
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

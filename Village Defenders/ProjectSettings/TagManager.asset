@@ -8,6 +8,8 @@ TagManager:
   - Mud
   - Vegetable
   - Enemy
+  - FxTemporaire
+  - NPC
   layers:
   - Default
   - TransparentFX

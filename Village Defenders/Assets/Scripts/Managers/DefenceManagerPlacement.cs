@@ -22,7 +22,7 @@ public class DefenceManagerPlacement : MonoBehaviour
         foreach (GameObject position in positions)
         {
             MeshRenderer meshRenderer = position.GetComponent<MeshRenderer>();
-            meshRenderer.material.color = Color.green;
+            meshRenderer.enabled=false;
         }
     }
 

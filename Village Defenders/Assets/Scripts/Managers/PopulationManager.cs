@@ -6,7 +6,7 @@ using UnityEngine;
 public class PopulationManager : MonoBehaviour
 {
     public static PopulationManager instace;
-    [SerializeField] private int population;
+    public  int population;
     [SerializeField] private TextMeshProUGUI populationText;
     private void Awake()
     {
@@ -16,7 +16,7 @@ public class PopulationManager : MonoBehaviour
     {
         populationText.text = "Current Village Population " + population.ToString();
     }
-    public void UpdatePopulationStats()
+    public void UpdatePopulationUI()
     {
         populationText.text = "Current Village Population " + population.ToString();
     }
