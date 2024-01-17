@@ -28,8 +28,8 @@ public class VeggiePanel : MonoBehaviour
             GameManager.instance.coins -= scriptableVegs.veggiePrice;
             FarmingManager.instance.PlantVegetable(scriptableVegs.veggieID);
             GameManager.instance.generalshopPanel.SetActive(false);
-            GameManager.instance.veggiesScriptable.Add(scriptableVegs);
             Debug.Log("Bought item" + scriptableVegs.name);
+            GameManager.instance.UpdateCoinsUI();
             ShopUI.instance.ExitShop();
         }
     }

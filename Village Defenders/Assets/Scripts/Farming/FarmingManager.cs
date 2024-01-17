@@ -34,8 +34,8 @@ public class FarmingManager : MonoBehaviour
                 Mud mud = hit.collider.GetComponent<Mud>();
                 if (mud != null && mud.CanBePlanted())
                 {
-                    PlantVegetable(0);
-                    mud.canBePlanted = false; 
+
+                    ShopUI.instance.EnableVeggiesShopPanel();
                 }
             }
 
@@ -47,10 +47,15 @@ public class FarmingManager : MonoBehaviour
         if (hit.collider != null)
         {
 
+            Mud mud = hit.collider.GetComponent<Mud>();
+            if (mud != null && mud.CanBePlanted())
+            {
+                Vector3 pos = hit.collider.bounds.center + ypos;
+                GameObject vegetable = Instantiate(vegetableScriptable[id].veggiePrefab, pos, Quaternion.identity);
 
-            Vector3 pos = hit.collider.bounds.center + ypos;
-            GameObject vegetable = Instantiate(vegetableScriptable[id].veggiePrefab, pos, Quaternion.identity);
-
+                mud.canBePlanted = false;
+            }
+              
 
         }
     }

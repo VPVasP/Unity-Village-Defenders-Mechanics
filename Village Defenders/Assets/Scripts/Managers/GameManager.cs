@@ -7,9 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [Header("Shop")]
-    public List<ScriptableVegetables> veggiesScriptable;
-    public List<ScriptableNPCS> NpcsScriptable;
-    public List<ScriptableDefences> defencesScriptable;
     public int coins = 100;
     [SerializeField] private GameObject[] VeggiePanels;
     [SerializeField] private GameObject[] NPCPanels;
@@ -49,6 +46,10 @@ public class GameManager : MonoBehaviour
         NpcsShopPanel.SetActive(false);
         defencesShopPanel.SetActive(false);
 
+        coinsText.text = "Coins: " + coins.ToString();
+    }
+    public void UpdateCoinsUI()
+    {
         coinsText.text = "Coins: " + coins.ToString();
     }
 }
