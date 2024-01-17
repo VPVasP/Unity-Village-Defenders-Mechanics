@@ -21,7 +21,14 @@ public class FarmingManager : MonoBehaviour
             return;
         }
     }
-
+    private void Start()
+    {
+        foreach(ScriptableVegetables scriptableVegetables in vegetableScriptable)
+        {
+            scriptableVegetables.quantity = 0;
+            scriptableVegetables.isInInventory = false;
+        }
+    }
 
     private void Update()
     {

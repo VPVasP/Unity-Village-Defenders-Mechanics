@@ -9,4 +9,5 @@ public class ScriptableVegetables : ScriptableObject
     public int veggieMoraleGiver;
     public GameObject veggiePrefab;
     public int quantity;
+    public bool isInInventory;
 }
