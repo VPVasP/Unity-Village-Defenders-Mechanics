@@ -41,6 +41,7 @@ public class EnemiesManager : MonoBehaviour
         mainMusic.clip = mainMusicAudioClip;
         mainMusic.loop = true;
         mainMusic.playOnAwake = true;
+        mainMusic.Play();
         enemiesUI.SetActive(false);
     }
     private void Update()
