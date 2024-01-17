@@ -1,15 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
-
     private Animator anim;
     private Rigidbody rb;
     public float npcWalkSpeed = 5f;
     private Vector3 targetLocation;
-    private string npcTag="NPC";
+    private string npcTag = "NPC";
+    private Canvas canvas;
+    private Transform mainCamera;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -18,6 +17,7 @@ public class NPC : MonoBehaviour
         gameObject.tag = npcTag;
         PopulationManager.instace.population += 1;
         PopulationManager.instace.UpdatePopulationUI();
+        mainCamera = Camera.main.transform;
     }
 
     void Update()
@@ -25,7 +25,7 @@ public class NPC : MonoBehaviour
         MoveTowardsTarget();
     }
 
-    void MoveTowardsTarget()
+   private void MoveTowardsTarget()
     {
         if (transform.position != targetLocation)
         {
@@ -36,6 +36,12 @@ public class NPC : MonoBehaviour
         {
             targetLocation = RentacleZone.instance.GetRandomPoint();
         }
+    }
+    
+    private void CanvasFaceCamera()
+    {
+        canvas.transform.LookAt(canvas.transform.position + mainCamera.rotation * Vector3.forward,
+                         mainCamera.rotation * Vector3.up);
     }
 }
 
