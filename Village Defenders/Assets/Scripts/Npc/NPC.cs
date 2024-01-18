@@ -10,6 +10,7 @@ public class NPC : MonoBehaviour
    [SerializeField] private Canvas canvas;
     private Transform mainCamera;
     [SerializeField] private float npcRotateSpeed = 180;
+    private LayerMask npcLayerMask;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -20,6 +21,7 @@ public class NPC : MonoBehaviour
         PopulationManager.instace.population += 1;
         PopulationManager.instace.UpdatePopulationUI();
         mainCamera = Camera.main.transform;
+        npcLayerMask = 1 << LayerMask.NameToLayer("NPC");
     }
 
     void Update()

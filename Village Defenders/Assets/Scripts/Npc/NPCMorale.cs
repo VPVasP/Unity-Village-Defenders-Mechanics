@@ -13,6 +13,7 @@ public class NPCMorale : MonoBehaviour
     [SerializeField]  private float moraleMeter;
     [SerializeField] private Animator anim;
     [SerializeField] private NPC npcMovement;
+    public ScriptableVegetables[] vegetable;
     private void Start()
     {
         moraleMeter = 100;
@@ -73,6 +74,10 @@ public class NPCMorale : MonoBehaviour
             Invoke("Dead", 4f);
             Debug.Log("Dead");
         }
+    }
+    public void AddMorale()
+    {
+        moraleMeter += vegetable[0].veggieMoraleGiver;
     }
     public void Dead()
     {

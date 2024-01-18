@@ -19,6 +19,11 @@ public class Inventory : MonoBehaviour
     [SerializeField] private GameObject playerButtonsPanel;
     [SerializeField] private GameObject inventoryVegetableUI;
     [SerializeField] private Transform inventoryUIPosition;
+    [SerializeField] GameObject feedNpcText;
+    private LayerMask npcLayerMask;
+    [SerializeField] private bool canFeedNPC;
+    [SerializeField] private bool canUseRaycast;
+    public RaycastHit hit;
     private void Awake()
     {
         instance = this;
@@ -26,6 +31,8 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         inventoryPanel.SetActive(false);
+        feedNpcText.SetActive(false);
+        npcLayerMask = 1 << LayerMask.NameToLayer("NPC");
         ShowInventory();
     }
     public void OpenInventory()
@@ -36,6 +43,7 @@ public class Inventory : MonoBehaviour
         farmingPanel.SetActive(false);
         enemiesUI.SetActive(false);
         playerButtonsPanel.SetActive(false);
+        feedNpcText.SetActive(false);
         ShowInventory();
     }
     public void CloseInventory()
@@ -45,6 +53,7 @@ public class Inventory : MonoBehaviour
         playerPanel.SetActive(true);
         farmingPanel.SetActive(true);
         enemiesUI.SetActive(false);
+        feedNpcText.SetActive(false);
         playerButtonsPanel.SetActive(true);
     }
     
@@ -55,6 +64,11 @@ public class Inventory : MonoBehaviour
     private void Update()
     {
         ShowInventory();
+
+        if (Input.GetMouseButtonDown(0)&&canFeedNPC)
+        {
+            RayCastFeedNPC();
+        }
     }
     private void ShowInventory()
     {
@@ -69,6 +83,13 @@ public class Inventory : MonoBehaviour
                 inventorySlotClone.transform.SetParent(inventoryUIPosition);
                 inventorySlotClone.GetComponentInChildren<TextMeshProUGUI>().text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
                 inventorySlotClone.GetComponentInChildren<Image>().sprite = vegetable.spriteImage;
+                inventorySlotClone.GetComponent<Vegetable>().vegetable = vegetable;
+                inventorySlotClone.GetComponentInChildren<Button>().onClick.AddListener(() => UseVegetable());
+                GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
+                foreach (GameObject npc in npcs)
+                {
+                    npc.GetComponent<NPCMorale>().vegetable[0] = vegetable;
+                }
                 vegetable.isInInventory = true;
             }
              if (vegetable.veggieID == 0 && vegetable.quantity > 1)
@@ -125,6 +146,24 @@ public class Inventory : MonoBehaviour
                 GameObject tomatoInventoryObject = GameObject.Find("OrangeInventory");
                 tomatoInventoryObject.GetComponentInChildren<TextMeshProUGUI>().text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
             }
+        }
+    }
+    public void UseVegetable()
+    {
+        inventoryPanel.SetActive(false);
+        feedNpcText.SetActive(true);
+        canFeedNPC = true;
+        Debug.Log("Use Vegetable");
+    }
+    private void RayCastFeedNPC()
+    {
+        canUseRaycast = true;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, npcLayerMask))
+        {
+            Debug.Log("Clicked on NPC: " + hit.collider.gameObject.name);
+         hit.collider.GetComponent<NPCMorale>().AddMorale();
+
         }
     }
 }
