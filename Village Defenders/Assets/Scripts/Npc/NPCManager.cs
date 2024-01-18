@@ -11,6 +11,7 @@ public class NPCManager : MonoBehaviour
     {
         instance = this;
     }
+    
     public void BuyNPC(int id)
     {
         Instantiate(scriptableNPC[id].npcPrefab, npcSpawnPosition.position, Quaternion.identity);

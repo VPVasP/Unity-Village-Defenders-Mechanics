@@ -23,6 +23,9 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private AudioClip[] enemyAudios;
     private Animator anim;
     [SerializeField] private GameObject deathEffect;
+    [SerializeField] private LayerMask groundMask;
+    private float groundDistance = 0.6f;
+    [SerializeField] private bool isGrounded;
     private void Start()
     {
         GameObject[] targetObjects = GameObject.FindGameObjectsWithTag("Wall");
@@ -49,53 +52,51 @@ public class EnemyMovement : MonoBehaviour
         anim= GetComponent<Animator>();
 
         gameObject.tag = "Enemy";
+        groundMask = 1 << LayerMask.NameToLayer("Ground");
     }
 
     private void Update()
     {
         Transform closestTarget = GetClosestTarget(targets);
+        isGrounded = isGroundedBool();
         if (closestTarget != null)
         {
             float distanceToTarget = Vector3.Distance(transform.position, closestTarget.position);
           //  Debug.Log(distanceToTarget);
-            if (distanceToTarget > minimumDistance)
+            if (distanceToTarget > minimumDistance &&isGroundedBool())
             {
-                MoveTowardsTarget(closestTarget.position);
-                transform.LookAt(closestTarget);
+               MoveTowardsTarget(closestTarget.position);
+               RotateEnemy(closestTarget.position);
+             
             }
-            if (distanceToTarget <= minimumDistance && distanceToTarget > attackDistance)
+            if (distanceToTarget <= minimumDistance && distanceToTarget > attackDistance &&isGroundedBool())
             {
                 if (Time.time >= nextAttackTime)
                 {
                     Debug.Log("Attack");
                     rb.velocity = Vector3.zero;
-                   // closestTarget.GetComponent<WallSystem>().LoseHealth();
+                    closestTarget.GetComponent<WallSystem>().LoseHealth();
                     anim.SetTrigger("Attack");
                     nextAttackTime = Time.time + timeBetweenAttacks;
                 }
-                else
-                {
-                    Transform newTarget = GetClosestTarget(targets);
-                    if (newTarget != null)
-                    {
+                anim.SetBool("isGrounded", isGrounded);
 
-                        MoveTowardsTarget(newTarget.position);
-                        transform.LookAt(newTarget);
-                        minimumDistance = 6;
-                        attackDistance = 2;
-
-                    }
-
-                }
+            }
             }
         }
-    }
+    
         private void MoveTowardsTarget(Vector3 targetPosition)
     {
         Vector3 direction = (targetPosition - transform.position).normalized;
         rb.AddForce(direction * movementSpeed);
     }
-
+    private void RotateEnemy(Vector3 targetPosition)
+    {
+        Vector3 direction = (targetPosition - transform.position).normalized;
+        direction.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5f);
+    }
     private Transform GetClosestTarget(Transform[] objects)
     {
         Transform bestTarget = null;
@@ -128,5 +129,10 @@ public class EnemyMovement : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position, minimumDistance);
+    }
+    bool isGroundedBool()
+    {
+        RaycastHit hit;
+        return Physics.Raycast(transform.position, Vector3.down, out hit, groundDistance, groundMask);
     }
 }

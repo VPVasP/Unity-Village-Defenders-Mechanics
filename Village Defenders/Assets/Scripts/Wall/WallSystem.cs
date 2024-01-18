@@ -6,6 +6,7 @@ public class WallSystem : MonoBehaviour
     [SerializeField] private string wallTag;
     [SerializeField] private LayerMask wallMask;
     public float wallHealth;
+    [SerializeField] private Slider wallHealthSlider;
     private void OnEnable()
     {
         gameObject.tag = wallTag;
@@ -14,10 +15,13 @@ public class WallSystem : MonoBehaviour
     private void Start()
     {
         wallHealth = 100;
+        wallHealthSlider = GetComponentInChildren<Slider>();
+        wallHealthSlider.value = wallHealth;
     }
    public void LoseHealth()
     {
         wallHealth -= 5;
+        wallHealthSlider.value = wallHealth;
     }
     private void Update()
     {

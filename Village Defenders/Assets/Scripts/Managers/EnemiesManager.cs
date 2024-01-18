@@ -29,6 +29,8 @@ public class EnemiesManager : MonoBehaviour
     [SerializeField] private AudioClip mainMusicAudioClip;
     [SerializeField] private AudioClip battleMusicAudioClip;
     [SerializeField] private GameObject enemiesUI;
+    [SerializeField] private GameObject directionalLight;
+    [SerializeField] private Color[] directionalLightColors;
     private void Start()
     {
         RenderSettings.skybox = SkyboxMaterials[0]; //we set our skybox material array to 0 because it is day
@@ -38,11 +40,12 @@ public class EnemiesManager : MonoBehaviour
         enemiesLeftText.gameObject.SetActive(false);
         enemiesRightText.gameObject.SetActive(false);
         enemiesDownText.gameObject.SetActive(false);
+        mainMusic.GetComponent<AudioSource>();
         mainMusic.clip = mainMusicAudioClip;
         mainMusic.loop = true;
-        mainMusic.playOnAwake = true;
         mainMusic.Play();
         enemiesUI.SetActive(false);
+        directionalLight.GetComponent<Light>().color = directionalLightColors[0];
     }
     private void Update()
     {
@@ -144,19 +147,23 @@ public class EnemiesManager : MonoBehaviour
                 break;
             case 3:
                 //now that night happens we update the daysnighttext
-                mainMusic.clip = battleMusicAudioClip;
-                mainMusic.Play();
+             
                 dayNightsText.text = daysNightString + daysPassed.ToString();
                 Debug.Log("NightHappens");
                 isNight = true; //we check if it is night 
                 RenderSettings.skybox = SkyboxMaterials[1]; //we set our skybox material to 1 because it is night
+                directionalLight.GetComponent<Light>().color = directionalLightColors[1];
+
                 if (!hasSpawnedEnemies)
                 {
                     int randomEnemies = Random.Range(8, 10);
                     EnemySpawner(randomEnemies);
                    
                     hasSpawnedEnemies = true; //we set the bool to true that it has spawned enemies 
+
                 }
+                mainMusic.clip = battleMusicAudioClip;
+                mainMusic.Play();
                 break;
 
 
