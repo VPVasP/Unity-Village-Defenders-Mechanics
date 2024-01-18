@@ -25,8 +25,8 @@ public class EnemiesManager : MonoBehaviour
     private bool hasSpawnedEnemies = false; //bool to check if enemies have been spawned
     private string enemiesString = "Total Alive Enemies ";
     [Header("Audio")]
-    [SerializeField] private AudioSource mainMusic;
-    [SerializeField] private AudioClip mainMusicAudioClip;
+    [SerializeField] private AudioSource aud;
+    [SerializeField] private AudioClip villageMusicAudioClip;
     [SerializeField] private AudioClip battleMusicAudioClip;
     [SerializeField] private GameObject enemiesUI;
     [SerializeField] private GameObject directionalLight;
@@ -40,10 +40,16 @@ public class EnemiesManager : MonoBehaviour
         enemiesLeftText.gameObject.SetActive(false);
         enemiesRightText.gameObject.SetActive(false);
         enemiesDownText.gameObject.SetActive(false);
-        mainMusic.GetComponent<AudioSource>();
-        mainMusic.clip = mainMusicAudioClip;
-        mainMusic.loop = true;
-        mainMusic.Play();
+        //audio
+        if (aud == null)
+        {
+            aud = gameObject.AddComponent<AudioSource>();
+        }
+        aud =GetComponent<AudioSource>();
+        aud.clip = villageMusicAudioClip;
+        aud.loop = true;
+        aud.Play();
+
         enemiesUI.SetActive(false);
         directionalLight.GetComponent<Light>().color = directionalLightColors[0];
     }
@@ -89,6 +95,8 @@ public class EnemiesManager : MonoBehaviour
             enemiesLeftText.text = "Enemies On Left Side " + enemiesToBeSpawned.ToString();
             enemiesRightText.text = "Enemies On Right Side " + enemiesToBeSpawned.ToString();
             enemiesDownText.text = "Enemies On Down Side " + enemiesToBeSpawned.ToString();
+            aud.clip = battleMusicAudioClip;
+            aud.Play();
         }
     }
     private void UpdateTimer(float currentTime)
@@ -162,8 +170,7 @@ public class EnemiesManager : MonoBehaviour
                     hasSpawnedEnemies = true; //we set the bool to true that it has spawned enemies 
 
                 }
-                mainMusic.clip = battleMusicAudioClip;
-                mainMusic.Play();
+
                 break;
 
 
