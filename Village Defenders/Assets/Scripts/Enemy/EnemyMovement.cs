@@ -74,6 +74,18 @@ public class EnemyMovement : MonoBehaviour
                 AttackTarget(closestTarget.transform.position);
            }
 
+            foreach (var target in targets)
+            {
+                if (target.GetComponent<WallSystem>().wallHealth <= 0)
+                {
+                    targets.Remove(target);
+                    Debug.Log("Target Removed");
+                }
+            }
+        }
+        else
+        {
+            SetNewTarget();
         }
     }
     public void MoveTowardsTarget(Vector3 targetPosition)
@@ -101,10 +113,9 @@ public class EnemyMovement : MonoBehaviour
                 nextAttackTime = Time.time + timeBetweenAttacks;
             closestTarget.GetComponent<WallSystem>().LoseHealth();
             }
-        if (closestTarget.GetComponent<WallSystem>().wallHealth <= 0)
-        {
-            targets.Remove(closestTarget);
-        }
+
+      
+       
             anim.SetBool("isGrounded", isGrounded);
         }
 
@@ -129,7 +140,16 @@ public class EnemyMovement : MonoBehaviour
 
         return bestTarget;
     }
-    public void EnemyDeath()
+    public void SetNewTarget()
+    {
+        Transform newTarget = GetClosestTarget(targets);
+
+        if (newTarget != null)
+        {
+            currentTarget = newTarget;
+        }
+    }
+        public void EnemyDeath()
     {
     GameObject deathEffectClone = Instantiate(deathEffect, transform.position, Quaternion.identity);
         gameObject.GetComponent<MeshRenderer>().enabled = false;

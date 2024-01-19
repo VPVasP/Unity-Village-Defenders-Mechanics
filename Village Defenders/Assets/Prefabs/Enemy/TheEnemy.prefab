@@ -115,6 +115,10 @@ MonoBehaviour:
   nextAttackTime: 0
   enemyAudios: []
   deathEffect: {fileID: 5716864177304236700, guid: 6d5c340bd86a66041bb8080a380ec925, type: 3}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  isGrounded: 0
 --- !u!136 &5099119270056661690
 CapsuleCollider:
   m_ObjectHideFlags: 0
