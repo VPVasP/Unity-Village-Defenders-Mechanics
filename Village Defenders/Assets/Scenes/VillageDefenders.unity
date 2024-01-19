@@ -1106,6 +1106,7 @@ MonoBehaviour:
   feedNpcText: {fileID: 731985679}
   canFeedNPC: 0
   canUseRaycast: 0
+  usedRaycast: 0
 --- !u!1 &247674906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1939,7 +1940,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408529136}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71f9df6323ca2d84782bf6ce1e5e1939, type: 3}
   m_Name: 
@@ -1950,6 +1951,8 @@ MonoBehaviour:
     m_Bits: 0
   wallHealth: 0
   wallHealthSlider: {fileID: 0}
+  enemies: []
+  minimumDistance: 0
 --- !u!1 &410313044
 GameObject:
   m_ObjectHideFlags: 0
@@ -2742,7 +2745,6 @@ GameObject:
   - component: {fileID: 626285494}
   - component: {fileID: 626285493}
   - component: {fileID: 626285496}
-  - component: {fileID: 626285497}
   m_Layer: 0
   m_Name: UpWall
   m_TagString: Wall
@@ -2855,24 +2857,8 @@ MonoBehaviour:
     m_Bits: 8
   wallHealth: 0
   wallHealthSlider: {fileID: 0}
---- !u!114 &626285497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 626285491}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71f9df6323ca2d84782bf6ce1e5e1939, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wallTag: 
-  wallMask:
-    serializedVersion: 2
-    m_Bits: 0
-  wallHealth: 0
-  wallHealthSlider: {fileID: 0}
+  enemies: []
+  minimumDistance: 6
 --- !u!1 &660519843
 GameObject:
   m_ObjectHideFlags: 0
@@ -3306,7 +3292,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701366845}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71f9df6323ca2d84782bf6ce1e5e1939, type: 3}
   m_Name: 
@@ -3317,6 +3303,8 @@ MonoBehaviour:
     m_Bits: 0
   wallHealth: 0
   wallHealthSlider: {fileID: 0}
+  enemies: []
+  minimumDistance: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -5822,7 +5810,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356325260}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71f9df6323ca2d84782bf6ce1e5e1939, type: 3}
   m_Name: 
@@ -5833,6 +5821,8 @@ MonoBehaviour:
     m_Bits: 0
   wallHealth: 0
   wallHealthSlider: {fileID: 0}
+  enemies: []
+  minimumDistance: 0
 --- !u!1 &1364215022
 GameObject:
   m_ObjectHideFlags: 0

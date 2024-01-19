@@ -23,6 +23,7 @@ public class Inventory : MonoBehaviour
     private LayerMask npcLayerMask;
     [SerializeField] private bool canFeedNPC;
     [SerializeField] private bool canUseRaycast;
+    [SerializeField] private bool usedRaycast;
     public RaycastHit hit;
     private void Awake()
     {
@@ -56,7 +57,7 @@ public class Inventory : MonoBehaviour
         feedNpcText.SetActive(false);
         playerButtonsPanel.SetActive(true);
     }
-    
+
     public void AddVegetableToInventory(ScriptableVegetables vegetable)
     {
         inventoryVegetables.Add(vegetable);
@@ -65,17 +66,17 @@ public class Inventory : MonoBehaviour
     {
         ShowInventory();
 
-        if (Input.GetMouseButtonDown(0)&&canFeedNPC)
+        if (Input.GetMouseButtonDown(0) && canUseRaycast)
         {
-            RayCastFeedNPC();
         }
     }
+
     private void ShowInventory()
     {
-     
+        GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
         foreach (ScriptableVegetables vegetable in inventoryVegetables)
         {
-            if (vegetable.veggieID == 0 && vegetable.quantity == 1 && vegetable.isInInventory==false)
+            if (vegetable.veggieID == 0 && vegetable.quantity == 1 && vegetable.isInInventory == false)
             {
                 Debug.Log("Veggie is that veggie");
                 GameObject inventorySlotClone = Instantiate(inventoryVegetableUI, inventoryUIPosition.position, Quaternion.identity);
@@ -83,18 +84,19 @@ public class Inventory : MonoBehaviour
                 inventorySlotClone.transform.SetParent(inventoryUIPosition);
                 inventorySlotClone.GetComponentInChildren<TextMeshProUGUI>().text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
                 inventorySlotClone.GetComponentInChildren<Image>().sprite = vegetable.spriteImage;
-                inventorySlotClone.GetComponent<Vegetable>().vegetable = vegetable;
                 inventorySlotClone.GetComponentInChildren<Button>().onClick.AddListener(() => UseVegetable());
-                GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
+
                 foreach (GameObject npc in npcs)
                 {
-                    npc.GetComponent<NPCMorale>().vegetable[0] = vegetable;
+                    npc.GetComponent<NPCMorale>().vegetable = vegetable;
                 }
                 vegetable.isInInventory = true;
+               
+              
             }
-             if (vegetable.veggieID == 0 && vegetable.quantity > 1)
+            if (vegetable.veggieID == 0 && vegetable.quantity > 1)
             {
-               GameObject tomatoInventoryObject= GameObject.Find("TomatoInventory");
+                GameObject tomatoInventoryObject = GameObject.Find("TomatoInventory");
                 tomatoInventoryObject.GetComponentInChildren<TextMeshProUGUI>().text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
             }
 
@@ -108,6 +110,10 @@ public class Inventory : MonoBehaviour
                 inventorySlotClone.GetComponentInChildren<TextMeshProUGUI>().text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
                 inventorySlotClone.GetComponentInChildren<Image>().sprite = vegetable.spriteImage;
                 vegetable.isInInventory = true;
+                foreach (GameObject npc in npcs)
+                {
+                    npc.GetComponent<NPCMorale>().vegetable = vegetable;
+                }
             }
             if (vegetable.veggieID == 1 && vegetable.quantity > 1)
             {
@@ -154,16 +160,21 @@ public class Inventory : MonoBehaviour
         feedNpcText.SetActive(true);
         canFeedNPC = true;
         Debug.Log("Use Vegetable");
-    }
-    private void RayCastFeedNPC()
-    {
         canUseRaycast = true;
+
+    }
+  private void AddMorale(ScriptableVegetables veggie)
+    {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, npcLayerMask))
         {
             Debug.Log("Clicked on NPC: " + hit.collider.gameObject.name);
-         hit.collider.GetComponent<NPCMorale>().AddMorale();
+
+            hit.collider.GetComponent<NPCMorale>().AddMorale(veggie.veggieMoraleGiver);
+            usedRaycast = true;
+
 
         }
     }
 }
+

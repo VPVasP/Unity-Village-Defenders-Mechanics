@@ -1,14 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
-using TMPro;
 using UnityEngine;
-using UnityEngine.AI;
-using static UnityEngine.GraphicsBuffer;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public Transform[] targets;
+    public List<Transform> targets;
     private Rigidbody rb;
     [Header("Values")]
     [SerializeField] private float movementSpeed = 5f;
@@ -29,66 +24,63 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         GameObject[] targetObjects = GameObject.FindGameObjectsWithTag("Wall");
-        targets = new Transform[targetObjects.Length];
+        targets = new List<Transform>();
 
-        for (int i = 0; i < targetObjects.Length; i++)
+        foreach (var targetObject in targetObjects)
         {
-            targets[i] = targetObjects[i].transform;
+            targets.Add(targetObject.transform);
         }
 
         if (rb == null)
         {
             rb = gameObject.AddComponent<Rigidbody>();
         }
-        if(aud == null)
+
+        if (aud == null)
         {
             aud = gameObject.AddComponent<AudioSource>();
         }
+
         rb = GetComponent<Rigidbody>();
         aud = GetComponent<AudioSource>();
         aud.playOnAwake = false;
         aud.loop = false;
 
-        anim= GetComponent<Animator>();
+        anim = GetComponent<Animator>();
 
         gameObject.tag = "Enemy";
         groundMask = 1 << LayerMask.NameToLayer("Ground");
     }
 
+   
+
     private void Update()
     {
         Transform closestTarget = GetClosestTarget(targets);
         isGrounded = isGroundedBool();
+
         if (closestTarget != null)
         {
             float distanceToTarget = Vector3.Distance(transform.position, closestTarget.position);
-          //  Debug.Log(distanceToTarget);
-            if (distanceToTarget > minimumDistance &&isGroundedBool())
-            {
-               MoveTowardsTarget(closestTarget.position);
-               RotateEnemy(closestTarget.position);
-             
-            }
-            if (distanceToTarget <= minimumDistance && distanceToTarget > attackDistance &&isGroundedBool())
-            {
-                if (Time.time >= nextAttackTime)
-                {
-                    Debug.Log("Attack");
-                    rb.velocity = Vector3.zero;
-                    closestTarget.GetComponent<WallSystem>().LoseHealth();
-                    anim.SetTrigger("Attack");
-                    nextAttackTime = Time.time + timeBetweenAttacks;
-                }
-                anim.SetBool("isGrounded", isGrounded);
 
+            if (distanceToTarget > minimumDistance && isGroundedBool())
+            {
+                MoveTowardsTarget(closestTarget.position);
+                RotateEnemy(closestTarget.position);
             }
-            }
+
+            if (distanceToTarget < minimumDistance && isGroundedBool())
+            {
+                AttackTarget(closestTarget.transform.position);
+           }
+
         }
-    
-        private void MoveTowardsTarget(Vector3 targetPosition)
+    }
+    public void MoveTowardsTarget(Vector3 targetPosition)
     {
         Vector3 direction = (targetPosition - transform.position).normalized;
         rb.AddForce(direction * movementSpeed);
+        anim.SetBool("isRunning", true);
     }
     private void RotateEnemy(Vector3 targetPosition)
     {
@@ -97,7 +89,27 @@ public class EnemyMovement : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5f);
     }
-    private Transform GetClosestTarget(Transform[] objects)
+     public void AttackTarget(Vector3 targetPosition){
+        Transform closestTarget = GetClosestTarget(targets);
+        if (Time.time >= nextAttackTime && closestTarget != null)
+            {
+                Debug.Log("Attack");
+                rb.velocity = Vector3.zero;
+
+                anim.SetBool("isRunning", false);
+                anim.SetTrigger("Attack");
+                nextAttackTime = Time.time + timeBetweenAttacks;
+            closestTarget.GetComponent<WallSystem>().LoseHealth();
+            }
+        if (closestTarget.GetComponent<WallSystem>().wallHealth <= 0)
+        {
+            targets.Remove(closestTarget);
+        }
+            anim.SetBool("isGrounded", isGrounded);
+        }
+
+
+    public Transform GetClosestTarget(List<Transform> objects)
     {
         Transform bestTarget = null;
         float closestDistance = float.MaxValue;
