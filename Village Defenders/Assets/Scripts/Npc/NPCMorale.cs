@@ -15,6 +15,7 @@ public class NPCMorale : MonoBehaviour
     [SerializeField] private NPC npcMovement;
     public ScriptableVegetables vegetable;
     public List<ScriptableVegetables> inventoryVegetables = new List<ScriptableVegetables>();
+    [SerializeField] private GameObject fill;
     private void Start()
     {
         moraleMeter = 100;
@@ -33,35 +34,40 @@ public class NPCMorale : MonoBehaviour
         {
             moraleImage.sprite = moraleSprites[0];
             TextMeshProUGUI hungryText = moraleSlider.GetComponentInChildren<TextMeshProUGUI>();
-
+            moraleSlider.GetComponentInChildren<Image>().color = Color.green;
+            fill.GetComponentInChildren<Image>().color = Color.green;
             hungryText.text = "I feel very energized";
         }
         if (moraleMeter<=80 && !isDead)
         {
             moraleImage.sprite = moraleSprites[1];
             TextMeshProUGUI hungryText = moraleSlider.GetComponentInChildren<TextMeshProUGUI>();
-
+            moraleSlider.GetComponentInChildren<Image>().color = Color.yellow;
+            fill.GetComponentInChildren<Image>().color = Color.yellow;
             hungryText.text = "I am starting to feel Hungry...";
         }
         if (moraleMeter <= 60 && !isDead)
         {
             moraleImage.sprite = moraleSprites[2];
             TextMeshProUGUI hungryText = moraleSlider.GetComponentInChildren<TextMeshProUGUI>();
-
+            moraleSlider.GetComponentInChildren<Image>().color = Color.blue;
+            fill.GetComponentInChildren<Image>().color = Color.blue;
             hungryText.text = "I feel a bit weak....";
         }
         if (moraleMeter <= 40 && !isDead)
         {
             moraleImage.sprite = moraleSprites[3];
             TextMeshProUGUI hungryText = moraleSlider.GetComponentInChildren<TextMeshProUGUI>();
-
+            moraleSlider.GetComponentInChildren<Image>().color = Color.gray;
+            fill.GetComponentInChildren<Image>().color = Color.gray;
             hungryText.text = "I need food....";
         }
         if (moraleMeter <= 20 && !isDead)
         {
             moraleImage.sprite = moraleSprites[4];
             TextMeshProUGUI hungryText = moraleSlider.GetComponentInChildren<TextMeshProUGUI>();
-
+            moraleSlider.GetComponentInChildren<Image>().color = Color.black;
+            fill.GetComponentInChildren<Image>().color = Color.black;
             hungryText.text = "I feel like dying...";
         }
         if (moraleMeter <= 0 && !isDead)
