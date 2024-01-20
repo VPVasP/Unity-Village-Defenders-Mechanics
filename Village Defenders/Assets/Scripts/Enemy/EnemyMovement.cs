@@ -151,11 +151,12 @@ public class EnemyMovement : MonoBehaviour
     }
         public void EnemyDeath()
     {
-    GameObject deathEffectClone = Instantiate(deathEffect, transform.position, Quaternion.identity);
+       GameObject deathEffectClone = Instantiate(deathEffect, transform.position, Quaternion.identity);
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         movementSpeed=0;
         Destroy(deathEffectClone, 0.8f);
         Destroy(gameObject, 1f);
+        EnemiesManager.instance.EnemyDeathCount();
     }
     private void OnDrawGizmos()
     {

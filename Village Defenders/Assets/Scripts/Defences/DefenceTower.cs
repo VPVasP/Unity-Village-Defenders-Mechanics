@@ -45,9 +45,10 @@ public class DefenceTower : MonoBehaviour
 
     private void ShootTargets(Vector3 targetPosition)
     {
+        Vector3 directionToTarget = (targetPosition - firePosition.position).normalized;
         GameObject bulletClone = Instantiate(bullet, firePosition.position, Quaternion.identity);
-        bulletClone.GetComponent<Rigidbody>().AddForce(transform.forward * 50);
-        Destroy(bulletClone, 5f);
+        bulletClone.GetComponent<Rigidbody>().velocity = directionToTarget * 300;
+        Destroy(bulletClone,3f);
     }
 
     private void RotateCanonTowardsTarget(Vector3 targetPosition)

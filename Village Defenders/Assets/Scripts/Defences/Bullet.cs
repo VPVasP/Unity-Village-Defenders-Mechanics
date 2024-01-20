@@ -6,6 +6,12 @@ public class Bullet : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        collision.gameObject.GetComponent<EnemyMovement>().EnemyDeath();
+        if (collision.collider.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<EnemyMovement>().EnemyDeath();
+            Debug.Log("Collided" + collision.gameObject.name);
+            Destroy(gameObject, 0.5f);
+        }
+
     }
 }

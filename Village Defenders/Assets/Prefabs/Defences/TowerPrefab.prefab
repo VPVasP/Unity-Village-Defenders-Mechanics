@@ -122,7 +122,6 @@ MonoBehaviour:
   firePosition: {fileID: 2314948958709554107}
   canon: {fileID: 5291573628345900967}
   bullet: {fileID: 1456142995344214969, guid: fac2645c9b14abd429067cc46b097208, type: 3}
-  targets: []
 --- !u!1 &1932967206825525202
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 1932967206825525202}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.138, z: -0}
+  m_LocalPosition: {x: 0, y: 1.138, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

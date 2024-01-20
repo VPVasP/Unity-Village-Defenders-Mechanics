@@ -31,6 +31,13 @@ public class EnemiesManager : MonoBehaviour
     [SerializeField] private GameObject enemiesUI;
     [SerializeField] private GameObject directionalLight;
     [SerializeField] private Color[] directionalLightColors;
+
+    [SerializeField] private int totalEnemiesAlive;
+    public static EnemiesManager instance;
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
         RenderSettings.skybox = SkyboxMaterials[0]; //we set our skybox material array to 0 because it is day
@@ -78,6 +85,8 @@ public class EnemiesManager : MonoBehaviour
                     Instantiate(enemy, SpawnPositions[i].position + randomSpawnPoint, Quaternion.identity);
 
                     totalEnemiesSpawned++;
+                    totalEnemiesAlive++;
+                    Debug.Log(totalEnemiesAlive);
                 }
 
               
@@ -107,7 +116,16 @@ public class EnemiesManager : MonoBehaviour
         //we update the ui text to display the seconds and the minutes
         timerText.text = "Timer: " + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
-    private void DayNightHandler()
+    public void EnemyDeathCount()
+    {
+        if (totalEnemiesAlive > 0)
+        {
+            totalEnemiesAlive--;
+            totalEnemiesText.text = enemiesString + totalEnemiesText.ToString();
+            Debug.Log(totalEnemiesAlive +"Enemies Killed");
+        }
+    }
+        private void DayNightHandler()
     {
         //switch day based on the days passed
         switch (daysPassed)
