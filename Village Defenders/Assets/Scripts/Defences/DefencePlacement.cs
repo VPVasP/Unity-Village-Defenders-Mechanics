@@ -11,6 +11,7 @@ public class DefencePlacement : MonoBehaviour
     [SerializeField] private DefencePlacementUI[] defencePlacementUI;
     public ScriptableDefences scriptableDefence;
     public bool canSpawnDefence;
+    [SerializeField] private Vector3 defenceGameobjectRotation;
     private void Awake()
     {
         instance = this;
@@ -62,6 +63,7 @@ public class DefencePlacement : MonoBehaviour
                     keyNumberPresses += 1;
                     this.enabled = false;
                     GameObject scriptableDefenceClone = Instantiate(scriptableDefence.defencePrefab, transform.position, Quaternion.identity);
+                    scriptableDefenceClone.transform.rotation = Quaternion.Euler(defenceGameobjectRotation);
                     foreach (DefencePlacementUI defencePlacementUI in defencePlacementUI)
                     {
 

@@ -22,6 +22,7 @@ public class DefenceManagerPlacement : MonoBehaviour
         foreach (GameObject position in positions)
         {
             MeshRenderer meshRenderer = position.GetComponent<MeshRenderer>();
+    //        position.GetComponentInChildren<TextMeshProUGUI>().gameObject.SetActive(false);
             meshRenderer.enabled=false;
         }
     }
@@ -31,6 +32,7 @@ public class DefenceManagerPlacement : MonoBehaviour
         foreach (GameObject position in positions)
         {
             position.GetComponent<DefencePlacement>().enabled = true;
+         //   position.GetComponentInChildren<TextMeshProUGUI>().gameObject.SetActive(true);
             pressKeyText.gameObject.SetActive(true);
         }
     }

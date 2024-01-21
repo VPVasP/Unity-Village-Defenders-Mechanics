@@ -19,7 +19,7 @@ public class DefencePlacementUI : MonoBehaviour
         canvas = GetComponentInChildren<Canvas>();
 
         defencePlacement = GetComponent<DefencePlacement>();
-
+        NumberText.gameObject.SetActive(false);
         if (defencePlacement != null)
         {
             NumberText.text = "Press " + defencePlacement.keysToSpawn[0];
