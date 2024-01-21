@@ -13,6 +13,7 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private GameObject EnemiesUI;
     [SerializeField] private GameObject farmingPanel;
     [SerializeField] private GameObject playerButtosnPanel;
+    [SerializeField] private GameObject defenceShopPanelToSpawn;
     private void Awake()
     {
         instance = this;
@@ -60,6 +61,7 @@ public class ShopUI : MonoBehaviour
         EnemiesUI.SetActive(false);
         farmingPanel.SetActive(false);
         playerButtosnPanel.SetActive(false);
+        defenceShopPanelToSpawn.SetActive(true);
     }
     public void ReturnOrEnableGeneralShopPanel()
     {

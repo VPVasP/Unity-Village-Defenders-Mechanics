@@ -87,6 +87,10 @@ public class EnemyMovement : MonoBehaviour
         {
             SetNewTarget();
         }
+        if (targets.Count == 0)
+        {
+            Debug.Log("End Game");
+        }
     }
     public void MoveTowardsTarget(Vector3 targetPosition)
     {
@@ -151,8 +155,7 @@ public class EnemyMovement : MonoBehaviour
     }
         public void EnemyDeath()
     {
-       GameObject deathEffectClone = Instantiate(deathEffect, transform.position, Quaternion.identity);
-        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        GameObject deathEffectClone = Instantiate(deathEffect, transform.position, Quaternion.identity);
         movementSpeed=0;
         Destroy(deathEffectClone, 0.8f);
         Destroy(gameObject, 1f);

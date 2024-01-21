@@ -4,7 +4,7 @@ using TMPro;
 using System.Collections;
 public class WallSystem : MonoBehaviour
 {
-    [SerializeField] private string wallTag;
+    private string wallTag;
     [SerializeField] private LayerMask wallMask;
     public float wallHealth;
     [SerializeField] private Slider wallHealthSlider;

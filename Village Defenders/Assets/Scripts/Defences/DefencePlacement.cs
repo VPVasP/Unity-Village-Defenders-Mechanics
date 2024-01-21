@@ -3,13 +3,18 @@ using UnityEngine;
 
 public class DefencePlacement : MonoBehaviour
 {
+    public static DefencePlacement instance;
     public bool hasBeenPlaced;
-    public GameObject objectToInstantiate;
     public string[] keysToSpawn;
     [SerializeField] private bool hasPressedKeyTwice;
     [SerializeField] private int keyNumberPresses;
     [SerializeField] private DefencePlacementUI[] defencePlacementUI;
-
+    public ScriptableDefences scriptableDefence;
+    public bool canSpawnDefence;
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void OnEnable()
     {
@@ -51,12 +56,12 @@ public class DefencePlacement : MonoBehaviour
             {
                 if (Input.GetKeyDown(key))
                 {
-                    Instantiate(objectToInstantiate, transform.position, Quaternion.identity);
                     hasBeenPlaced = true;
                     this.enabled = false;
                     hasPressedKeyTwice = false;
                     keyNumberPresses += 1;
                     this.enabled = false;
+                    GameObject scriptableDefenceClone = Instantiate(scriptableDefence.defencePrefab, transform.position, Quaternion.identity);
                     foreach (DefencePlacementUI defencePlacementUI in defencePlacementUI)
                     {
 
@@ -78,6 +83,8 @@ public class DefencePlacement : MonoBehaviour
                     hasPressedKeyTwice = true;
                     keyNumberPresses += 1;
                     this.enabled = false;
+                    canSpawnDefence = true;
+
                     foreach (DefencePlacementUI defencePlacementUI in defencePlacementUI)
                     {
 
@@ -95,4 +102,6 @@ public class DefencePlacement : MonoBehaviour
 
         
     }
+
+    
 }

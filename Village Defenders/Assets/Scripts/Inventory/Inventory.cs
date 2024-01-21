@@ -86,10 +86,10 @@ public class Inventory : MonoBehaviour
                 inventorySlotClone.GetComponentInChildren<Image>().sprite = vegetable.spriteImage;
                 inventorySlotClone.GetComponentInChildren<Button>().onClick.AddListener(() => UseVegetable());
 
-                foreach (GameObject npc in npcs)
-                {
-                    npc.GetComponent<NPCMorale>().vegetable = vegetable;
-                }
+                //foreach (GameObject npc in npcs)
+                //{
+                //    npc.GetComponent<NPCMorale>().vegetable = vegetable;
+                //}
                 vegetable.isInInventory = true;
                
               
@@ -110,10 +110,10 @@ public class Inventory : MonoBehaviour
                 inventorySlotClone.GetComponentInChildren<TextMeshProUGUI>().text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
                 inventorySlotClone.GetComponentInChildren<Image>().sprite = vegetable.spriteImage;
                 vegetable.isInInventory = true;
-                foreach (GameObject npc in npcs)
-                {
-                    npc.GetComponent<NPCMorale>().vegetable = vegetable;
-                }
+                //foreach (GameObject npc in npcs)
+                //{
+                //    npc.GetComponent<NPCMorale>().vegetable = vegetable;
+                //}
             }
             if (vegetable.veggieID == 1 && vegetable.quantity > 1)
             {

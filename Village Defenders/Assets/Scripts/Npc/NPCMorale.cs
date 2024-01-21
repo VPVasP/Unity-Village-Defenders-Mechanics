@@ -13,8 +13,6 @@ public class NPCMorale : MonoBehaviour
     [SerializeField]  private float moraleMeter;
     [SerializeField] private Animator anim;
     [SerializeField] private NPC npcMovement;
-    public ScriptableVegetables vegetable;
-    public List<ScriptableVegetables> inventoryVegetables = new List<ScriptableVegetables>();
     [SerializeField] private GameObject fill;
     private void Start()
     {

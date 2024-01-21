@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Mud : MonoBehaviour
 {
-    [SerializeField] private string mudTag;
-    [SerializeField] private LayerMask mudMask;
+    private string mudTag;
+    private LayerMask mudMask;
     public bool canBePlanted;
     private void OnEnable()
     {
