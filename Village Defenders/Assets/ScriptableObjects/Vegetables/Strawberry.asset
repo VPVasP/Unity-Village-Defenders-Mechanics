@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4a480815a0f3394f8b275272b9fb1c9, type: 3}
-  m_Name: Cabbage
+  m_Name: Strawberry
   m_EditorClassIdentifier: 
-  veggieName: Cabbage
-  veggiePrice: 10
-  spriteImage: {fileID: 21300000, guid: 641592b4a67879b47af4a13c7a3589f9, type: 3}
-  veggieID: 1
-  veggieMoraleGiver: 8
-  veggiePrefab: {fileID: 5200857969662234094, guid: 0dda26aab642865459b406f173bcfab2, type: 3}
+  veggieName: Strawberry
+  veggiePrice: 20
+  spriteImage: {fileID: 21300000, guid: 79da1c068231b574f89270e8e50249f2, type: 3}
+  veggieID: 3
+  veggieMoraleGiver: 25
+  veggiePrefab: {fileID: 1724972533694550, guid: 63e523ab5d9ce7348b431ae1d689a54d, type: 3}
   quantity: 0
+  isInInventory: 0

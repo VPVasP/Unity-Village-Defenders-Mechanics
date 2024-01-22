@@ -64,6 +64,8 @@ public class DefencePlacement : MonoBehaviour
                     this.enabled = false;
                     GameObject scriptableDefenceClone = Instantiate(scriptableDefence.defencePrefab, transform.position, Quaternion.identity);
                     scriptableDefenceClone.transform.rotation = Quaternion.Euler(defenceGameobjectRotation);
+                    scriptableDefenceClone.transform.SetParent(this.transform);
+
                     foreach (DefencePlacementUI defencePlacementUI in defencePlacementUI)
                     {
 

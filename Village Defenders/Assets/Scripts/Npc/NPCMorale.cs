@@ -10,7 +10,7 @@ public class NPCMorale : MonoBehaviour
     [SerializeField] private Sprite[] moraleSprites;
     [SerializeField] private bool isDead;
     private Slider moraleSlider;
-    [SerializeField]  private float moraleMeter;
+    public float moraleMeter;
     [SerializeField] private Animator anim;
     [SerializeField] private NPC npcMovement;
     [SerializeField] private GameObject fill;

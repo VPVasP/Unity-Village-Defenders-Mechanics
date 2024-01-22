@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4a480815a0f3394f8b275272b9fb1c9, type: 3}
-  m_Name: Banana
+  m_Name: Apple
   m_EditorClassIdentifier: 
-  veggieName: Banana
-  veggiePrice: 15
-  spriteImage: {fileID: 21300000, guid: 34c7c7798c0ae07469ae54796333d426, type: 3}
-  veggieID: 2
-  veggieMoraleGiver: 15
-  veggiePrefab: {fileID: 5200857969662234094, guid: 142662fc7563a944c8023fdeecb1b9c1, type: 3}
+  veggieName: Apple
+  veggiePrice: 5
+  spriteImage: {fileID: 21300000, guid: f8a90cf13eb6b4948b7a7e8b2250ab38, type: 3}
+  veggieID: 0
+  veggieMoraleGiver: 5
+  veggiePrefab: {fileID: 1829371231341652, guid: 426b44a7575f71e479fab4f4e8431989, type: 3}
   quantity: 0
+  isInInventory: 0

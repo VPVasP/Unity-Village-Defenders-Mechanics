@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4a480815a0f3394f8b275272b9fb1c9, type: 3}
-  m_Name: Orange
+  m_Name: Peach
   m_EditorClassIdentifier: 
-  veggieName: Orange
-  veggiePrice: 20
-  spriteImage: {fileID: 21300000, guid: d1eabdd267a95114ca311ec502390de8, type: 3}
-  veggieID: 3
-  veggieMoraleGiver: 25
-  veggiePrefab: {fileID: 5200857969662234094, guid: 8d4a3822d61fb03489f5e640e358158d, type: 3}
+  veggieName: Peach
+  veggiePrice: 10
+  spriteImage: {fileID: 21300000, guid: 880829f3dd2dd4a479ae4f3bd7c850ce, type: 3}
+  veggieID: 1
+  veggieMoraleGiver: 8
+  veggiePrefab: {fileID: 1541859410316496, guid: 4fe5a7bcbee1651418ea031a87ff53e4, type: 3}
   quantity: 0
+  isInInventory: 0

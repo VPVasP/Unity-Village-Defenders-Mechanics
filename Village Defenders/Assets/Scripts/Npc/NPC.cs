@@ -52,5 +52,9 @@ public class NPC : MonoBehaviour
         canvas.transform.LookAt(canvas.transform.position + mainCamera.rotation * Vector3.forward,
                          mainCamera.rotation * Vector3.up);
     }
+    public void PlayMoraleAnimation()
+    {
+        anim.SetTrigger("Cheer");
+    }
 }
 
