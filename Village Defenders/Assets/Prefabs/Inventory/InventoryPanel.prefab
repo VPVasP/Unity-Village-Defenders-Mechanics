@@ -353,7 +353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5464319508194576384}
   - component: {fileID: 4677890554357595473}
-  - component: {fileID: 6963419566034145258}
+  - component: {fileID: 2145505903589968989}
   m_Layer: 5
   m_Name: InventoryPanel
   m_TagString: Untagged
@@ -391,7 +391,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6635109898210563919}
   m_CullTransparentMesh: 1
---- !u!114 &6963419566034145258
+--- !u!114 &2145505903589968989
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -400,10 +400,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6635109898210563919}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f05c1453fc7d4ca428db221b594ff0e8, type: 3}
+  m_Script: {fileID: 11500000, guid: dd9e55021f5f73f4abd2dd4a25ccb782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vegetable: {fileID: 0}
 --- !u!1 &8913393105375668290
 GameObject:
   m_ObjectHideFlags: 0

@@ -71,7 +71,7 @@ public class EnemyMovement : MonoBehaviour
 
             if (distanceToTarget < minimumDistance && isGroundedBool())
             {
-                AttackTarget(closestTarget.transform.position);
+                     AttackTarget(closestTarget.transform.position);
            }
 
             foreach (var target in targets)

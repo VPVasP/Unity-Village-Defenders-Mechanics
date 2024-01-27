@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class NPC : MonoBehaviour
@@ -7,10 +9,12 @@ public class NPC : MonoBehaviour
     public float npcWalkSpeed = 5f;
     private Vector3 targetLocation;
     private string npcTag = "NPC";
-   [SerializeField] private Canvas canvas;
+    [SerializeField] private Canvas canvas;
     private Transform mainCamera;
     [SerializeField] private float npcRotateSpeed = 180;
     private LayerMask npcLayerMask;
+    [SerializeField] private LayerMask obstacleLayerMask;
+    [SerializeField] private float obstacleDetectionDistance = 2f;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -22,12 +26,17 @@ public class NPC : MonoBehaviour
         PopulationManager.instace.UpdatePopulationUI();
         mainCamera = Camera.main.transform;
         npcLayerMask = 1 << LayerMask.NameToLayer("NPC");
+        obstacleLayerMask = 1 << LayerMask.NameToLayer("Obstacle");
+        npcWalkSpeed = 2.5f;
+        npcRotateSpeed = 180f;
+        obstacleDetectionDistance = 4f;
     }
 
     void Update()
     {
         MoveTowardsTarget();
         CanvasFaceCamera();
+        Debug.Log(obstacleDetectionDistance);
     }
 
    private void MoveTowardsTarget()
@@ -36,6 +45,14 @@ public class NPC : MonoBehaviour
         {
             Vector3 direction = (targetLocation - transform.position).normalized;
             var step = npcWalkSpeed * Time.deltaTime;
+
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, direction, out hit, obstacleDetectionDistance, obstacleLayerMask))
+            {
+                targetLocation = hit.point + hit.normal * obstacleDetectionDistance;
+                direction = (targetLocation - transform.position).normalized;
+                Debug.Log("Keeping a certain distance");
+            }
             transform.position = Vector3.MoveTowards(transform.position, targetLocation, step);
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, npcRotateSpeed * Time.deltaTime);
@@ -55,6 +72,18 @@ public class NPC : MonoBehaviour
     public void PlayMoraleAnimation()
     {
         anim.SetTrigger("Cheer");
+        npcWalkSpeed = 0;
+        StartCoroutine(MoraleAnimationEnumerator());
+    }
+    IEnumerator MoraleAnimationEnumerator()
+    {
+        yield return new WaitForSeconds(2.5f);
+        npcWalkSpeed = 2.5f;
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, obstacleDetectionDistance);
     }
 }
 

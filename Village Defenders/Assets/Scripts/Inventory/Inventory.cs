@@ -1,14 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 
 public class Inventory : MonoBehaviour
 {
-
     public static Inventory instance;
     public List<ScriptableVegetables> inventoryVegetables = new List<ScriptableVegetables>();
     [SerializeField] private GameObject inventoryPanel;
@@ -64,7 +62,7 @@ public class Inventory : MonoBehaviour
     }
     private void Update()
     {
-        ShowInventory();
+    
 
         if (Input.GetMouseButtonDown(0) && canUseRaycast && !usedRaycast)
         {
@@ -72,7 +70,7 @@ public class Inventory : MonoBehaviour
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, npcLayerMask))
             {
                 Debug.Log("Added Morale to npc " + hit.collider.gameObject.name + hit.collider.gameObject.GetComponent<NPCMorale>().moraleMeter);
-                AddMorale(inventoryVegetables[0]);
+              //  hit.collider.gameObject.GetComponent<NPCMorale>().AddMorale(0)
                 hit.collider.gameObject.GetComponent<NPC>().PlayMoraleAnimation();
                 feedNpcText.gameObject.SetActive(false);
                 usedRaycast = true;
@@ -83,87 +81,46 @@ public class Inventory : MonoBehaviour
 
     private void ShowInventory()
     {
-        GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
+        foreach (Transform child in inventoryUIPosition)
+        {
+            Destroy(child.gameObject);
+        }
+
+
         foreach (ScriptableVegetables vegetable in inventoryVegetables)
         {
-            if (vegetable.veggieID == 0 && vegetable.quantity == 1 && vegetable.isInInventory == false)
+            CreateInventorySlot(vegetable);
+        }
+    }
+    private void CreateInventorySlot(ScriptableVegetables vegetable)
+    {
+        GameObject inventorySlotClone =Instantiate(inventoryVegetableUI, inventoryUIPosition.position, Quaternion.identity);
+        if (inventorySlotClone != null)
+        {
+            if (vegetable.quantity == 1 && !vegetable.isInInventory)
             {
-                Debug.Log("Veggie is that veggie");
-                GameObject inventorySlotClone = Instantiate(inventoryVegetableUI, inventoryUIPosition.position, Quaternion.identity);
-                inventorySlotClone.name = "TomatoInventory";
-                inventorySlotClone.transform.SetParent(inventoryUIPosition);
-                inventorySlotClone.GetComponentInChildren<TextMeshProUGUI>().text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
-                inventorySlotClone.GetComponentInChildren<Image>().sprite = vegetable.spriteImage;
-                inventorySlotClone.GetComponentInChildren<Button>().onClick.AddListener(() => UseVegetable());
+                InstantiateInventorySlot(vegetable, inventorySlotClone);
 
-                foreach (GameObject npc in npcs)
-                {
-                 //   npc.GetComponent<NPCMorale>().vegetable = vegetable;
-                }
-                vegetable.isInInventory = true;
-
-
-            }
-            if (vegetable.veggieID == 0 && vegetable.quantity > 1)
-            {
-                GameObject tomatoInventoryObject = GameObject.Find("TomatoInventory");
-                tomatoInventoryObject.GetComponentInChildren<TextMeshProUGUI>().text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
-            }
-
-
-            if (vegetable.veggieID == 1 && vegetable.quantity == 1 && vegetable.isInInventory == false)
-            {
-                Debug.Log("Veggie is that veggie");
-                GameObject inventorySlotClone = Instantiate(inventoryVegetableUI, inventoryUIPosition.position, Quaternion.identity);
-                inventorySlotClone.name = "CabbageInventory";
-                inventorySlotClone.transform.SetParent(inventoryUIPosition);
-                inventorySlotClone.GetComponentInChildren<TextMeshProUGUI>().text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
-                inventorySlotClone.GetComponentInChildren<Image>().sprite = vegetable.spriteImage;
-                vegetable.isInInventory = true;
-                foreach (GameObject npc in npcs)
-                {
-                   // npc.GetComponent<NPCMorale>().vegetable = vegetable;
-                }
-            }
-            if (vegetable.veggieID == 1 && vegetable.quantity > 1)
-            {
-                GameObject tomatoInventoryObject = GameObject.Find("CabbageInventory");
-                tomatoInventoryObject.GetComponentInChildren<TextMeshProUGUI>().text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
-            }
-
-            if (vegetable.veggieID == 2 && vegetable.quantity == 1 && vegetable.isInInventory == false)
-            {
-                Debug.Log("Veggie is that veggie");
-                GameObject inventorySlotClone = Instantiate(inventoryVegetableUI, inventoryUIPosition.position, Quaternion.identity);
-                inventorySlotClone.name = "BananaInventory";
-                inventorySlotClone.transform.SetParent(inventoryUIPosition);
-                inventorySlotClone.GetComponentInChildren<TextMeshProUGUI>().text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
-                inventorySlotClone.GetComponentInChildren<Image>().sprite = vegetable.spriteImage;
                 vegetable.isInInventory = true;
             }
-            if (vegetable.veggieID == 2 && vegetable.quantity > 1)
+            else if (vegetable.quantity > 1 && vegetable.isInInventory)
             {
-                GameObject tomatoInventoryObject = GameObject.Find("BananaInventory");
-                tomatoInventoryObject.GetComponentInChildren<TextMeshProUGUI>().text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
-            }
-
-            if (vegetable.veggieID == 3 && vegetable.quantity == 1 && vegetable.isInInventory == false)
-            {
-                Debug.Log("Veggie is that veggie");
-                GameObject inventorySlotClone = Instantiate(inventoryVegetableUI, inventoryUIPosition.position, Quaternion.identity);
-                inventorySlotClone.name = "OrangeInventory";
-                inventorySlotClone.transform.SetParent(inventoryUIPosition);
-                inventorySlotClone.GetComponentInChildren<TextMeshProUGUI>().text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
-                inventorySlotClone.GetComponentInChildren<Image>().sprite = vegetable.spriteImage;
-                vegetable.isInInventory = true;
-            }
-            if (vegetable.veggieID == 3 && vegetable.quantity > 1)
-            {
-                GameObject tomatoInventoryObject = GameObject.Find("OrangeInventory");
-                tomatoInventoryObject.GetComponentInChildren<TextMeshProUGUI>().text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
+                TextMeshProUGUI textMesh = inventorySlotClone.GetComponentInChildren<TextMeshProUGUI>();
+                textMesh.text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
             }
         }
     }
+    private void InstantiateInventorySlot(ScriptableVegetables vegetable, GameObject inventorySlotObject)
+    {
+        GameObject inventorySlotClone = Instantiate(inventorySlotObject, inventoryUIPosition.position, Quaternion.identity);
+        inventorySlotClone.name = vegetable.name;
+        inventorySlotClone.transform.SetParent(inventoryUIPosition);
+        inventorySlotClone.GetComponentInChildren<TextMeshProUGUI>().text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
+        inventorySlotClone.GetComponentInChildren<Image>().sprite = vegetable.spriteImage;
+        InventoryPanel inventoryPanel = inventorySlotClone.GetComponent<InventoryPanel>();
+        inventoryPanel.vegetables.Add(vegetable);
+    }
+
     public void UseVegetable()
     {
         inventoryPanel.SetActive(false);
@@ -173,15 +130,8 @@ public class Inventory : MonoBehaviour
         canUseRaycast = true;
 
     }
-  private void AddMorale(ScriptableVegetables veggie)
-    {
-      
 
-            hit.collider.GetComponent<NPCMorale>().AddMorale(veggie.veggieMoraleGiver);
-     
-
-
-        }
+ 
     }
 
 
