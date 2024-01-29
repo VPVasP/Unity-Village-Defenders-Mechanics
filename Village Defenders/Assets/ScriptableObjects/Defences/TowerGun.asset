@@ -16,4 +16,4 @@ MonoBehaviour:
   defencePrice: 5
   spriteImage: {fileID: 21300000, guid: 5e4feeaf8dac7d24d8377c030c6399e0, type: 3}
   defenceID: 0
-  defencePrefab: {fileID: 781359551476969938, guid: 48b7124909e3bf940a375cce258a3d18, type: 3}
+  defencePrefab: {fileID: 1986981060788291363, guid: a4ec2a4ff85d0e148be23cf69b3c8896, type: 3}

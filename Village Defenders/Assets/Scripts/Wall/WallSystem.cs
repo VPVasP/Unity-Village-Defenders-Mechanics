@@ -4,7 +4,7 @@ using TMPro;
 using System.Collections;
 public class WallSystem : MonoBehaviour
 {
-    private string wallTag;
+    private string wallTag ="Wall";
     [SerializeField] private LayerMask wallMask;
     public float wallHealth;
     [SerializeField] private Slider wallHealthSlider;
@@ -17,11 +17,7 @@ public class WallSystem : MonoBehaviour
     private string wallName;
     [SerializeField] private TextMeshProUGUI wallDownText;
     private bool isWallDownText;
-    private void OnEnable()
-    {
-        gameObject.tag = wallTag;
-        wallMask = 1 << LayerMask.NameToLayer("Wall");
-    }
+  
     private void Start()
     {
 
@@ -41,6 +37,9 @@ public class WallSystem : MonoBehaviour
         aud.clip = wallDestroyedSound;
         aud.playOnAwake = false;
         aud.loop = false;
+
+        gameObject.tag = wallTag;
+        wallMask = 1 << LayerMask.NameToLayer("Wall");
     }
     public void LoseHealth()
     {
