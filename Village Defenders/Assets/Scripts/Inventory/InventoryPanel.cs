@@ -7,6 +7,7 @@ public class InventoryPanel : MonoBehaviour
 {
     public List< ScriptableVegetables> vegetables;
     [SerializeField] Button button;
+    private bool isClicked = false;
 
     private void Start()
     {
@@ -18,13 +19,18 @@ public class InventoryPanel : MonoBehaviour
         if (vegetables.Count > 0)
         {
             Inventory.instance.UseVegetable();
+            isClicked = true;
+            Debug.Log("Vegetable clicked");
+        }
+        
+    }
+    private void Update()
+    {
+        if(isClicked)
+        {
             Sprite invIcon = vegetables[0].spriteImage;
             Texture2D texture = textureFromSprite(invIcon);
             Cursor.SetCursor(texture, Vector2.zero, CursorMode.Auto);
-        }
-        else
-        {
-            Debug.Log("No vegetables");
         }
     }
     public static Texture2D textureFromSprite(Sprite sprite)

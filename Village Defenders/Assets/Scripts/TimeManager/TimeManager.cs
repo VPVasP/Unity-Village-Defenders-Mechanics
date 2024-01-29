@@ -7,27 +7,36 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private Button speedTimeButton;
     //bool to check if our button is being clicked
     [SerializeField] private bool isButtonBeingClicked;
-   
+   public void ClickedOnSpeedButton()
+    {
+        isButtonBeingClicked = true;
+    }
     private void Update()
     {
         //if we click on it and the button can be clicked
-        if (Input.GetMouseButtonDown(0) && speedTimeButton.interactable)
+        if (Input.GetMouseButtonDown(0) && !isButtonBeingClicked)
         {
-            isButtonBeingClicked = true;
-            Debug.Log("Button is being pressed");
+            SpeedUpTime();
         }
         //if we release the mouse button on it and the button can be clicked
-        if (Input.GetMouseButtonUp(0) || !speedTimeButton.interactable)
+    else    if (Input.GetMouseButtonUp(0) &&isButtonBeingClicked)
         {
-            isButtonBeingClicked = false;
-            Time.timeScale = 1.0f;
-            Debug.Log("Button is not being pressed");
+
+            ResetTime();
         }
-        //if the button is being clicked all the time
-        if (isButtonBeingClicked)
-        {
+
+    }
+    private void SpeedUpTime()
+    {
+            isButtonBeingClicked = true;
             Time.timeScale = 2.5f;
             Debug.Log("Button is being pressed all the time");
         }
+    
+    private void ResetTime()
+    {
+        isButtonBeingClicked = false;
+        Time.timeScale = 1.0f;
+        Debug.Log("Button is not being pressed");
     }
 }
