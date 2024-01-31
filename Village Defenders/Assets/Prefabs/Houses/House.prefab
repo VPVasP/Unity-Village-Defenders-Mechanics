@@ -301,17 +301,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6113778208478077763}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.010000001, y: 0.06, z: 0.98639995}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7878946076235536047}
   m_Father: {fileID: 6714348570168906651}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.499}
+  m_AnchoredPosition: {x: 0, y: 0.93}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4050245830676686689
@@ -440,7 +440,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6612401280696540033}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 14, y: 2.02, z: 7.8}
   m_LocalScale: {x: 5, y: 4, z: 5}
   m_ConstrainProportionsScale: 0
@@ -496,7 +496,7 @@ MonoBehaviour:
   wallHealthSlider: {fileID: 0}
   enemies: []
   minimumDistance: 6
-  wallDestroyedEffect: {fileID: 0}
+  wallDestroyedEffect: {fileID: 1959573692019244523, guid: 0024890301b2a364e8f5c0c9d502616f, type: 3}
   wallDestroyedSound: {fileID: 8300000, guid: d6bd30e18754a0c40b0b38874c75b94f, type: 3}
   wallDownText: {fileID: 0}
 --- !u!1001 &6710724917782226365
@@ -511,9 +511,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: HouseModel
       objectReference: {fileID: 0}
+    - target: {fileID: 1796306004849952, guid: e29465159befc474182ece16f3f3916f, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4328445271373350, guid: e29465159befc474182ece16f3f3916f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -3.39
       objectReference: {fileID: 0}
     - target: {fileID: 4328445271373350, guid: e29465159befc474182ece16f3f3916f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -521,7 +525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4328445271373350, guid: e29465159befc474182ece16f3f3916f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 4328445271373350, guid: e29465159befc474182ece16f3f3916f, type: 3}
       propertyPath: m_LocalRotation.w

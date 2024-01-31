@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -160,6 +159,7 @@ public class EnemyMovement : MonoBehaviour
         movementSpeed=0;
         Destroy(deathEffectClone, 0.8f);
         Destroy(gameObject, 1f);
+        GameManager.instance.EnemyDeathAward(4);
         EnemiesManager.instance.EnemyDeathCount();
     }
     private void OnDrawGizmos()

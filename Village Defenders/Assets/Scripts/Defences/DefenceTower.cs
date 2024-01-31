@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,9 +8,13 @@ public class DefenceTower : MonoBehaviour
     [SerializeField] private Transform canon;
     [SerializeField] private GameObject bullet;
     private List<Transform> targets = new List<Transform>();
-
+    private Animator anim;
+    [SerializeField] private GameObject shootEffect;
+    [SerializeField] private AudioSource aud;
     private void Start()
     {
+        anim = GetComponent<Animator>();
+        aud = GetComponent<AudioSource>();
         StartCoroutine(ShootTargetsRoutine());
     }
 
@@ -45,9 +49,13 @@ public class DefenceTower : MonoBehaviour
 
     private void ShootTargets(Vector3 targetPosition)
     {
+        anim.SetBool("isShooting", true);
+        aud.Play();
+        GameObject shootEffectClone = Instantiate(shootEffect, firePosition.position, Quaternion.identity);
         Vector3 directionToTarget = (targetPosition - firePosition.position).normalized;
         GameObject bulletClone = Instantiate(bullet, firePosition.position, Quaternion.identity);
         bulletClone.GetComponent<Rigidbody>().velocity = directionToTarget * 300;
+        Destroy(shootEffectClone, 1f);
         Destroy(bulletClone,3f);
     }
 
@@ -55,7 +63,6 @@ public class DefenceTower : MonoBehaviour
     {
         Vector3 targetDirection = targetPosition - canon.position;
         float targetRotationZ = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
-        targetRotationZ = Mathf.Clamp(targetRotationZ, -40, 40);
         canon.rotation = Quaternion.Euler(0f, 0f, targetRotationZ);
     }
 

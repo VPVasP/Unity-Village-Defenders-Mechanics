@@ -52,4 +52,9 @@ public class GameManager : MonoBehaviour
     {
         coinsText.text = "Coins: " + coins.ToString();
     }
+    public void EnemyDeathAward(int enemyAward)
+    {
+        coins += enemyAward;
+        coinsText.text = "Coins: " + coins.ToString();
+    }
 }

@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets: []
-  movementSpeed: 100
+  movementSpeed: 250
   minimumDistance: 8
   attackDistance: 2
   timeBetweenAttacks: 1
