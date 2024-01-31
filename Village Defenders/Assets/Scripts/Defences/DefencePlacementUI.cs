@@ -12,10 +12,9 @@ public class DefencePlacementUI : MonoBehaviour
     public TextMeshProUGUI pressKeyText;
     private void Start()
     {
-        NumberText = GetComponentInChildren<TextMeshProUGUI>();
-        NumberText.transform.localScale = new Vector3(5, 5, 1);
-        NumberText.transform.localRotation = Quaternion.Euler(0f, -180f, 0f);
-        NumberText.gameObject.SetActive(true);
+       NumberText = GetComponentInChildren<TextMeshProUGUI>();
+       // NumberText.transform.localScale = new Vector3(5, 5, 1);
+        NumberText.transform.localRotation = Quaternion.Euler(0f,0f,0f);;
         canvas = GetComponentInChildren<Canvas>();
 
         defencePlacement = GetComponent<DefencePlacement>();
@@ -25,8 +24,8 @@ public class DefencePlacementUI : MonoBehaviour
             NumberText.text = "Press " + defencePlacement.keysToSpawn[0];
         }
         mainCam = Camera.main;
-        canvas.worldCamera = mainCam;
-        canvas.transform.localRotation = Quaternion.Euler(0f,0f, 0f);
+      canvas.worldCamera = mainCam;
+      canvas.transform.localRotation = Quaternion.Euler(0f,0f, 0f);
     }
     public void UpdateUiIfNotPlaced()
     {
@@ -43,7 +42,7 @@ public class DefencePlacementUI : MonoBehaviour
     }
     private void Update()
     {
-        canvas.transform.LookAt(mainCam.transform);
+        canvas.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         if (defencePlacement.hasBeenPlaced)
         {
             NumberText.text = "";

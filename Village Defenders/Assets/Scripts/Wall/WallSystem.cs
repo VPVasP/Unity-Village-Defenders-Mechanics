@@ -7,7 +7,7 @@ public class WallSystem : MonoBehaviour
     private string wallTag ="Wall";
     [SerializeField] private LayerMask wallMask;
     public float wallHealth;
-    [SerializeField] private Slider wallHealthSlider;
+    public  Slider wallHealthSlider;
     public GameObject[] enemies;
     private float distanceToEnemy;
     [SerializeField] private float minimumDistance;
@@ -50,6 +50,7 @@ public class WallSystem : MonoBehaviour
     private void Update()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        wallHealth = Mathf.Clamp(wallHealth, 0f, 100f);
         if (wallHealth <= 0)
         {
 

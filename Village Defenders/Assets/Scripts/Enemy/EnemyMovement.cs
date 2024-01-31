@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -58,11 +59,11 @@ public class EnemyMovement : MonoBehaviour
     {
         Transform closestTarget = GetClosestTarget(targets);
         isGrounded = isGroundedBool();
-
+       
         if (closestTarget != null)
         {
             float distanceToTarget = Vector3.Distance(transform.position, closestTarget.position);
-
+            Debug.Log(distanceToTarget);
             if (distanceToTarget > minimumDistance && isGroundedBool())
             {
                 MoveTowardsTarget(closestTarget.position);
