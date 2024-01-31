@@ -1,18 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using System.Collections;
-public class WallSystem : MonoBehaviour
+
+public class Crystal : MonoBehaviour
 {
-    private string wallTag ="Wall";
+    private string wallTag = "Wall";
     [SerializeField] private LayerMask wallMask;
     public float wallHealth;
-    public  Slider wallHealthSlider;
+    public Slider wallHealthSlider;
     public GameObject[] enemies;
     private float distanceToEnemy;
     [SerializeField] private float minimumDistance;
     [SerializeField] private GameObject wallDestroyedEffect;
     private AudioSource aud;
+    [SerializeField] private AudioClip wallDestroyedSound;
+    private string wallName;
+    [SerializeField] private TextMeshProUGUI wallDownText;
+    private bool isWallDownText;
+    [SerializeField] private GameObject destroyedEffect;
     private void Start()
     {
 
@@ -24,9 +31,15 @@ public class WallSystem : MonoBehaviour
         {
             aud = gameObject.AddComponent<AudioSource>();
         }
-               //audio 
+        wallName = gameObject.name;
+        wallDownText.text = "Wall was Destroyed " + wallName;
+        wallDownText.gameObject.SetActive(false);
+        //audio 
         aud = GetComponent<AudioSource>();
+        aud.clip = wallDestroyedSound;
         aud.playOnAwake = false;
+        aud.loop = false;
+
         gameObject.tag = wallTag;
         wallMask = 1 << LayerMask.NameToLayer("Wall");
     }
@@ -43,29 +56,26 @@ public class WallSystem : MonoBehaviour
         if (wallHealth <= 0)
         {
 
-            DestroyWall();
+            DestroyCrystal();
             EnemiesSetNewTarget();
         }
         if (gameObject.transform.position == new Vector3(0f, -5f, 0f))
         {
 
             GameObject wallDestroyedEffectClone = Instantiate(wallDestroyedEffect, transform.position, Quaternion.identity);
-       
-            Destroy(wallDestroyedEffectClone, 1f);
+            aud.Play();
+            Destroy(wallDestroyedEffectClone, 0.5f);
         }
     }
- 
-
-    private void DestroyWall()
+    
+    private void DestroyCrystal()
     {
-
-        aud.Play();
-        gameObject.transform.position += new Vector3(0f, -2.5f * Time.deltaTime, 0f);
-        Destroy(gameObject, 4f);
+       
+        Destroy(gameObject, 2f);
         Debug.Log("Wall destroyed!");
     }
 
-   private void EnemiesSetNewTarget()
+    private void EnemiesSetNewTarget()
     {
         foreach (GameObject enemy in enemies)
         {
@@ -78,4 +88,6 @@ public class WallSystem : MonoBehaviour
         }
     }
 
+
 }
+

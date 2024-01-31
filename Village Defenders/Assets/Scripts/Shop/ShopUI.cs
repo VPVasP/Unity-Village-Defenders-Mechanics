@@ -14,7 +14,8 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private GameObject farmingPanel;
     [SerializeField] private GameObject playerButtosnPanel;
     [SerializeField] private GameObject defenceShopPanelToSpawn;
-    public GameObject repairWallsPanel;
+    [SerializeField] private GameObject npcShopPanelToSpawn;
+    [SerializeField] private GameObject repairWallsPanel;
     private void Awake()
     {
         instance = this;
@@ -30,6 +31,7 @@ public class ShopUI : MonoBehaviour
         farmingPanel.SetActive(true);
         playerButtosnPanel.SetActive(true);
         repairWallsPanel.SetActive(false);
+        npcShopPanelToSpawn.SetActive(false);
     }
     public void EnableVeggiesShopPanel()
     {
@@ -42,6 +44,7 @@ public class ShopUI : MonoBehaviour
         farmingPanel.SetActive(false);
         playerButtosnPanel.SetActive(false);
         repairWallsPanel.SetActive(false);
+        npcShopPanelToSpawn.SetActive(false);
     }
     public void EnableNPCSShopPanel()
     {
@@ -53,7 +56,8 @@ public class ShopUI : MonoBehaviour
         EnemiesUI.SetActive(false);
         farmingPanel.SetActive(false);
         playerButtosnPanel.SetActive(false);
-        repairWallsPanel.SetActive(false); ;
+        repairWallsPanel.SetActive(false);
+        npcShopPanelToSpawn.SetActive(true);
     }
     public void EnableDefencesShopPanel()
     {
@@ -67,6 +71,7 @@ public class ShopUI : MonoBehaviour
         playerButtosnPanel.SetActive(false);
         defenceShopPanelToSpawn.SetActive(true);
         repairWallsPanel.SetActive(false);
+        npcShopPanelToSpawn.SetActive(false);
     }
     public void EnableRepairWallsPanel()
     {
@@ -80,6 +85,7 @@ public class ShopUI : MonoBehaviour
         playerButtosnPanel.SetActive(false);
         defenceShopPanelToSpawn.SetActive(false);
         repairWallsPanel.SetActive(true);
+        npcShopPanelToSpawn.SetActive(false);
     }
     public void ReturnOrEnableGeneralShopPanel()
     {
@@ -92,6 +98,7 @@ public class ShopUI : MonoBehaviour
         farmingPanel.SetActive(false);
         playerButtosnPanel.SetActive(false);
         repairWallsPanel.SetActive(false);
+        npcShopPanelToSpawn.SetActive(false);
     }
     public void ExitShop()
     {
@@ -104,5 +111,6 @@ public class ShopUI : MonoBehaviour
         farmingPanel.SetActive(true);
         playerButtosnPanel.SetActive(true);
         repairWallsPanel.SetActive(false);
+        npcShopPanelToSpawn.SetActive(false);
     }
 }

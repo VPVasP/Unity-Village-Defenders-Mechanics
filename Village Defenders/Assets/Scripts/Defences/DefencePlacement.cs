@@ -12,6 +12,7 @@ public class DefencePlacement : MonoBehaviour
     public ScriptableDefences scriptableDefence;
     public bool canSpawnDefence;
     [SerializeField] private Vector3 defenceGameobjectRotation;
+    [SerializeField] private AudioSource aud;
     private void Awake()
     {
         instance = this;
@@ -44,8 +45,8 @@ public class DefencePlacement : MonoBehaviour
         this.enabled = false;
         keyNumberPresses = 0;
         keyNumberPresses += 1;
-       
-
+        aud= GetComponent<AudioSource>();
+        aud.playOnAwake = false;
     }
 
 
@@ -57,6 +58,7 @@ public class DefencePlacement : MonoBehaviour
             {
                 if (Input.GetKeyDown(key))
                 {
+                    aud.Play();
                     hasBeenPlaced = true;
                     this.enabled = false;
                     hasPressedKeyTwice = false;

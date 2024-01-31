@@ -16,7 +16,7 @@ public class NPCPanel : MonoBehaviour
         button = GetComponentInChildren<Button>();
         npcName.text = scriptableNpcs.name;
         npcImage.sprite = scriptableNpcs.spriteImage;
-        npcPriceText.text = scriptableNpcs.npcPrice.ToString();
+        npcPriceText.text ="Price " + scriptableNpcs.npcPrice.ToString();
         button.onClick.AddListener(BuyItem);
 
     }

@@ -11,6 +11,7 @@ public class DefenceTower : MonoBehaviour
     private Animator anim;
     [SerializeField] private GameObject shootEffect;
     [SerializeField] private AudioSource aud;
+    [SerializeField] private GameObject[] targetObjects;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -38,7 +39,7 @@ public class DefenceTower : MonoBehaviour
 
     private void FindTargets()
     {
-        GameObject[] targetObjects = GameObject.FindGameObjectsWithTag("Enemy");
+        targetObjects = GameObject.FindGameObjectsWithTag("Enemy");
         targets.Clear();
 
         for (int i = 0; i < targetObjects.Length; i++)

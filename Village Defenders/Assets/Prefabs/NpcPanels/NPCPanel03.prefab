@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 387494149600276376}
   - component: {fileID: 3704417911390276548}
   m_Layer: 5
-  m_Name: NpcNameText
+  m_Name: npcName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 121.5}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 10.0757, y: 121.5}
+  m_SizeDelta: {x: 319.0757, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &387494149600276376
 CanvasRenderer:
@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d411bd75e849a3b4fa096521a59179bd, type: 2}
+  m_sharedMaterial: {fileID: -8467784329739723033, guid: d411bd75e849a3b4fa096521a59179bd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 6745452021704331004}
   - component: {fileID: 5121800667364834949}
   m_Layer: 5
-  m_Name: NpcImage
+  m_Name: npcImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 743907372064107956}
   - component: {fileID: 4877235915252275378}
   m_Layer: 5
-  m_Name: NpcPrice
+  m_Name: npcPrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -276,8 +276,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Price
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d411bd75e849a3b4fa096521a59179bd, type: 2}
+  m_sharedMaterial: {fileID: -8467784329739723033, guid: d411bd75e849a3b4fa096521a59179bd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -410,8 +410,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: BUY
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d411bd75e849a3b4fa096521a59179bd, type: 2}
+  m_sharedMaterial: {fileID: -8467784329739723033, guid: d411bd75e849a3b4fa096521a59179bd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -488,9 +488,9 @@ GameObject:
   - component: {fileID: 5464319508194576384}
   - component: {fileID: 4677890554357595473}
   - component: {fileID: 6113981912805184635}
-  - component: {fileID: 586832626026894246}
+  - component: {fileID: 8986283092935444804}
   m_Layer: 5
-  m_Name: NPCPanelYBot
+  m_Name: NPCPanel03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -516,8 +516,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 51.023438, y: 101}
-  m_SizeDelta: {x: -1618.835, y: -790.8636}
+  m_AnchoredPosition: {x: 549.79663, y: 343.7489}
+  m_SizeDelta: {x: -953.8041, y: -467.1984}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4677890554357595473
 CanvasRenderer:
@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5176471}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -557,7 +557,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &586832626026894246
+--- !u!114 &8986283092935444804
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -569,7 +569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60656951b360d3e4a850814a0b81568e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptableNpcs: {fileID: 11400000, guid: 79236db21e2d7b1438c7bc3915cf8379, type: 2}
+  scriptableNpcs: {fileID: 11400000, guid: dd0e112f3189f45429caea1f82ebf54a, type: 2}
   npcName: {fileID: 3704417911390276548}
   npcImage: {fileID: 5121800667364834949}
   npcPriceText: {fileID: 4877235915252275378}

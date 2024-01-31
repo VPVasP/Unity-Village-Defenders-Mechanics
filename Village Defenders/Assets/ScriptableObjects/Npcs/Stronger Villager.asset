@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24af40a24d85a9246b37e584c3f0183b, type: 3}
-  m_Name: SimpleVillager
+  m_Name: Stronger Villager
   m_EditorClassIdentifier: 
-  npcName: Simple Villager
-  npcPrice: 10
-  spriteImage: {fileID: 21300000, guid: 77320809570cbc64fb9e0c1d92072514, type: 3}
-  npcID: 0
-  npcPrefab: {fileID: 6779792548083025311, guid: 965789dd33aabee40bbfe66fefe47352, type: 3}
+  npcName: StrongerVillager
+  npcPrice: 15
+  spriteImage: {fileID: 21300000, guid: ee352f5beeb264b44bd0ba8902138cdf, type: 3}
+  npcID: 1
+  npcPrefab: {fileID: 6779792548083025311, guid: 2a8f18911807a564d8c7c90368810a9e, type: 3}
