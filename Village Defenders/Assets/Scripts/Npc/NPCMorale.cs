@@ -56,7 +56,7 @@ public class NPCMorale : MonoBehaviour
             TextMeshProUGUI hungryText = moraleSlider.GetComponentInChildren<TextMeshProUGUI>();
             moraleSlider.GetComponentInChildren<Image>().color = Color.yellow;
             fill.GetComponentInChildren<Image>().color = Color.yellow;
-            hungryText.text = "I am starting to feel Hungry...";
+            hungryText.text = "I am feeling hungry";
         }
         if (moraleMeter <= 60 && !isDead)
         {
@@ -64,7 +64,7 @@ public class NPCMorale : MonoBehaviour
             TextMeshProUGUI hungryText = moraleSlider.GetComponentInChildren<TextMeshProUGUI>();
             moraleSlider.GetComponentInChildren<Image>().color = Color.blue;
             fill.GetComponentInChildren<Image>().color = Color.blue;
-            hungryText.text = "I feel a bit weak....";
+            hungryText.text = "I feel a bit weak";
         }
         if (moraleMeter <= 40 && !isDead)
         {
@@ -72,7 +72,7 @@ public class NPCMorale : MonoBehaviour
             TextMeshProUGUI hungryText = moraleSlider.GetComponentInChildren<TextMeshProUGUI>();
             moraleSlider.GetComponentInChildren<Image>().color = Color.gray;
             fill.GetComponentInChildren<Image>().color = Color.gray;
-            hungryText.text = "I need food....";
+            hungryText.text = "I need food";
         }
         if (moraleMeter <= 20 && !isDead)
         {
@@ -80,7 +80,7 @@ public class NPCMorale : MonoBehaviour
             TextMeshProUGUI hungryText = moraleSlider.GetComponentInChildren<TextMeshProUGUI>();
             moraleSlider.GetComponentInChildren<Image>().color = Color.black;
             fill.GetComponentInChildren<Image>().color = Color.black;
-            hungryText.text = "I feel like dying...";
+            hungryText.text = "I feel like dying";
         }
         if (moraleMeter <= 0 && !isDead)
         {

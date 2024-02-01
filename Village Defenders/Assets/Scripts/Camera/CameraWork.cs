@@ -17,6 +17,7 @@ public class CameraWork : MonoBehaviour
         cam.orthographic = true;
         cam.orthographicSize = minOrthographicSize;
         cam.transform.localRotation = Quaternion.Euler(45, 0, 0);
+        minOrthographicSize =45;
         //we add an audio listener just in case
         if(audioListener!=null)
         {

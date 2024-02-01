@@ -1,5 +1,6 @@
  using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DefenceTower : MonoBehaviour
@@ -18,7 +19,13 @@ public class DefenceTower : MonoBehaviour
         aud = GetComponent<AudioSource>();
         StartCoroutine(ShootTargetsRoutine());
     }
-
+    private void Update()
+    {
+        if (targetObjects.Length==0)
+        {
+            anim.SetBool("isShooting", false);
+        }
+    }
     private IEnumerator ShootTargetsRoutine()
     {
         while (true)

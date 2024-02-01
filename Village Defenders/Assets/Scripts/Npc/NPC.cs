@@ -27,7 +27,6 @@ public class NPC : MonoBehaviour
         mainCamera = Camera.main.transform;
         npcLayerMask = 1 << LayerMask.NameToLayer("NPC");
         obstacleLayerMask = 1 << LayerMask.NameToLayer("Obstacle");
-        npcWalkSpeed = 2.5f;
         npcRotateSpeed = 180f;
         obstacleDetectionDistance = 4f;
     }
