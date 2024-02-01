@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class DefencePlacement : MonoBehaviour
@@ -13,6 +14,7 @@ public class DefencePlacement : MonoBehaviour
     public bool canSpawnDefence;
     [SerializeField] private Vector3 defenceGameobjectRotation;
     [SerializeField] private AudioSource aud;
+    [SerializeField] 
     private void Awake()
     {
         instance = this;
@@ -56,7 +58,7 @@ public class DefencePlacement : MonoBehaviour
         {
             foreach (string key in keysToSpawn)
             {
-                if (Input.GetKeyDown(key))
+                if (Input.GetKeyDown(key) &&!hasBeenPlaced)
                 {
                     aud.Play();
                     hasBeenPlaced = true;
@@ -77,8 +79,12 @@ public class DefencePlacement : MonoBehaviour
 
                     break;
                 }
+                else if (hasBeenPlaced)
+                {
+                    this.enabled = false;
+                }
             }
-
+         
         }
         else if (hasBeenPlaced && !hasPressedKeyTwice)
         {
@@ -89,7 +95,7 @@ public class DefencePlacement : MonoBehaviour
                     hasPressedKeyTwice = true;
                     keyNumberPresses += 1;
                     this.enabled = false;
-                    canSpawnDefence = true;
+                   
 
                     foreach (DefencePlacementUI defencePlacementUI in defencePlacementUI)
                     {

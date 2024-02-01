@@ -179,11 +179,11 @@ public class EnemiesManager : MonoBehaviour
                 isNight = true; //we check if it is night 
                 RenderSettings.skybox = SkyboxMaterials[1]; //we set our skybox material to 1 because it is night
                 directionalLight.GetComponent<Light>().color = directionalLightColors[1];
-                ShopUI.instance.ExitShop();
+               // ShopUI.instance.ExitShop();
                 
                 if (!hasSpawnedEnemies)
                 {
-                    int randomEnemies = Random.Range(8, 10);
+                    int randomEnemies = Random.Range(3,5);
                     EnemySpawner(randomEnemies);
                    
                     hasSpawnedEnemies = true; //we set the bool to true that it has spawned enemies 
@@ -207,11 +207,19 @@ public class EnemiesManager : MonoBehaviour
                     //update the timer display UI
                     UpdateTimer(timer);
                 break;
+               
 
 
             case 4:
-                  
-                
+                timer = 0;
+                UpdateTimer(timer);
+                aud.clip = villageMusicAudioClip;
+                aud.Play();
+                totalEnemiesText.gameObject.SetActive(false);
+                enemiesUpText.gameObject.SetActive(false);
+                enemiesLeftText.gameObject.SetActive(false);
+                enemiesRightText.gameObject.SetActive(false);
+                enemiesDownText.gameObject.SetActive(false);
                 break;
 
             default:

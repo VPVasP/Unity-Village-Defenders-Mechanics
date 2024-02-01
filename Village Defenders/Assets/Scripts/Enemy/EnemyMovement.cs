@@ -46,7 +46,7 @@ public class EnemyMovement : MonoBehaviour
         aud.playOnAwake = false;
         aud.loop = false;
 
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
 
         gameObject.tag = "Enemy";
         groundMask = 1 << LayerMask.NameToLayer("Ground");

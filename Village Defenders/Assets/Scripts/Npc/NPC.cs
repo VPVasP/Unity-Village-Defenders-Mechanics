@@ -39,7 +39,7 @@ public class NPC : MonoBehaviour
         Debug.Log(obstacleDetectionDistance);
     }
 
-   private void MoveTowardsTarget()
+    private void MoveTowardsTarget()
     {
         if (transform.position != targetLocation)
         {
@@ -47,23 +47,25 @@ public class NPC : MonoBehaviour
             var step = npcWalkSpeed * Time.deltaTime;
 
             RaycastHit hit;
+
+           
             if (Physics.Raycast(transform.position, direction, out hit, obstacleDetectionDistance, obstacleLayerMask))
             {
-                targetLocation = hit.point + hit.normal * obstacleDetectionDistance;
+                
+                targetLocation = Vector3.Lerp(targetLocation, hit.point + hit.normal * obstacleDetectionDistance, 0.5f);
                 direction = (targetLocation - transform.position).normalized;
-                Debug.Log("Keeping a certain distance");
+             
             }
+
             transform.position = Vector3.MoveTowards(transform.position, targetLocation, step);
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, npcRotateSpeed * Time.deltaTime);
-
         }
         else
         {
             targetLocation = RentacleZone.instance.GetRandomPoint();
         }
     }
-    
     private void CanvasFaceCamera()
     {
         canvas.transform.LookAt(canvas.transform.position + mainCamera.rotation * Vector3.forward,

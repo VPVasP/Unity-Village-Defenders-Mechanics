@@ -15,13 +15,17 @@ public class NPCMorale : MonoBehaviour
     [SerializeField] private NPC npcMovement;
     [SerializeField] private GameObject fill;
     public List<ScriptableVegetables> npcVegetables = new List<ScriptableVegetables>();
+    [SerializeField] private AudioSource deathAudio;
     private void Start()
     {
-        moraleMeter = 100;
         anim = GetComponent<Animator>();
         moraleSlider = GetComponentInChildren<Slider>();
         moraleImage.sprite = moraleSprites[0];
         moraleSlider.value =moraleMeter;
+        moraleSlider.GetComponentInChildren<Image>().color = Color.green;
+        fill.GetComponentInChildren<Image>().color = Color.green;
+        deathAudio= GetComponent<AudioSource>();
+        deathAudio.playOnAwake = false;
         isDead = false;
     }
     private void Update()
@@ -29,6 +33,15 @@ public class NPCMorale : MonoBehaviour
         float moodLoss = Random.Range(3, 5);
         moraleMeter -= moodLoss * Time.deltaTime;
         moraleSlider.value = moraleMeter;
+
+        if (moraleMeter >= 100 && !isDead)
+        {
+            moraleImage.sprite = moraleSprites[0];
+            TextMeshProUGUI hungryText = moraleSlider.GetComponentInChildren<TextMeshProUGUI>();
+            moraleSlider.GetComponentInChildren<Image>().color = Color.green;
+            fill.GetComponentInChildren<Image>().color = Color.green;
+            hungryText.text = "I feel very energized";
+        }
         if (moraleMeter <= 100 && !isDead)
         {
             moraleImage.sprite = moraleSprites[0];
@@ -71,6 +84,7 @@ public class NPCMorale : MonoBehaviour
         }
         if (moraleMeter <= 0 && !isDead)
         {
+            deathAudio.Play();
             isDead = true;
             moraleImage.sprite = moraleSprites[4];
             anim.SetTrigger("Dead");
