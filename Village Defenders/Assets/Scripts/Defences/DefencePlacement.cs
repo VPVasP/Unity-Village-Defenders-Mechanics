@@ -14,7 +14,7 @@ public class DefencePlacement : MonoBehaviour
     public bool canSpawnDefence;
     [SerializeField] private Vector3 defenceGameobjectRotation;
     [SerializeField] private AudioSource aud;
-    [SerializeField] 
+    [SerializeField] private GameObject spawnDefenceEffect;
     private void Awake()
     {
         instance = this;
@@ -66,10 +66,9 @@ public class DefencePlacement : MonoBehaviour
                     hasPressedKeyTwice = false;
                     keyNumberPresses += 1;
                     this.enabled = false;
-                    GameObject scriptableDefenceClone = Instantiate(scriptableDefence.defencePrefab, transform.position, Quaternion.identity);
-                    scriptableDefenceClone.transform.rotation = Quaternion.Euler(defenceGameobjectRotation);
-                    scriptableDefenceClone.transform.SetParent(this.transform);
-
+                    GameObject spawnDefenceEffectClone = Instantiate(spawnDefenceEffect, transform.position, Quaternion.identity);
+                    Destroy(spawnDefenceEffectClone, 0.5f);
+                    Invoke("SpawnDefence", 1f);
                     foreach (DefencePlacementUI defencePlacementUI in defencePlacementUI)
                     {
 
@@ -114,6 +113,11 @@ public class DefencePlacement : MonoBehaviour
 
         
     }
-
+    private void SpawnDefence()
+    {
+        GameObject scriptableDefenceClone = Instantiate(scriptableDefence.defencePrefab, transform.position, Quaternion.identity);
+        scriptableDefenceClone.transform.rotation = Quaternion.Euler(defenceGameobjectRotation);
+        scriptableDefenceClone.transform.SetParent(this.transform);
+    }
     
 }
