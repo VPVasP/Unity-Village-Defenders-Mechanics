@@ -33,6 +33,7 @@ public class EnemiesManager : MonoBehaviour
     [SerializeField] private Color[] directionalLightColors;
 
     [SerializeField] private int totalEnemiesAlive;
+    private int totalEnemiesSpawned = 0;
     public static EnemiesManager instance;
     private void Awake()
     {
@@ -70,43 +71,37 @@ public class EnemiesManager : MonoBehaviour
     {
         if (enemies.Length > 0)
         {
-            int totalEnemiesSpawned = 0;
-
-            for (int i = 0; i < SpawnPositions.Length; i++)
-            {
-                for (int j = 0; j < enemiesToBeSpawned; j++)
-                {
-                    GameObject enemy = enemies[Random.Range(0, enemies.Length)];
-
-                    float offsetX = Random.Range(-30f, 30f);
-                    float offsetY = Random.Range(0f, 0f);
-                    float offsetZ = Random.Range(-40f, 40f);
-                    Vector3 randomSpawnPoint = new Vector3(offsetX, offsetY, offsetZ);
-                    Instantiate(enemy, SpawnPositions[i].position + randomSpawnPoint, Quaternion.identity);
-
-                    totalEnemiesSpawned++;
-                    totalEnemiesAlive++;
-                    Debug.Log(totalEnemiesAlive);
-                }
-
-              
-            }
-
-            enemiesUI.SetActive(true);
-            totalEnemiesText.gameObject.SetActive(true);
-            enemiesUpText.gameObject.SetActive(true);
-            enemiesLeftText.gameObject.SetActive(true);
-            enemiesRightText.gameObject.SetActive(true);
-            enemiesDownText.gameObject.SetActive(true);
-
-            totalEnemiesText.text = enemiesString + totalEnemiesSpawned.ToString();
-            enemiesUpText.text = "Enemies On Up Side " + enemiesToBeSpawned.ToString();
-            enemiesLeftText.text = "Enemies On Left Side " + enemiesToBeSpawned.ToString();
-            enemiesRightText.text = "Enemies On Right Side " + enemiesToBeSpawned.ToString();
-            enemiesDownText.text = "Enemies On Down Side " + enemiesToBeSpawned.ToString();
-            aud.clip = battleMusicAudioClip;
-            aud.Play();
+            totalEnemiesSpawned = 0;
+            StartCoroutine(SpawnEnemiesWithDelay(enemiesToBeSpawned));
         }
+    }
+    private IEnumerator SpawnEnemiesWithDelay(int enemiesToBeSpawned)
+    {
+        float spawnDelay = 1.0f;
+
+        for (int i = 0; i < SpawnPositions.Length; i++)
+        {
+            for (int j = 0; j < enemiesToBeSpawned; j++)
+            {
+                GameObject enemy = enemies[Random.Range(0, enemies.Length)];
+
+                float offsetX = Random.Range(-30f, 30f);
+                float offsetY = Random.Range(0f, 0f);
+                float offsetZ = Random.Range(-40f, 40f);
+                Vector3 randomSpawnPoint = new Vector3(offsetX, offsetY, offsetZ);
+
+                Instantiate(enemy, SpawnPositions[i].position + randomSpawnPoint, Quaternion.identity);
+
+                totalEnemiesSpawned++;
+                totalEnemiesAlive++;
+                Debug.Log(totalEnemiesAlive);
+
+                yield return new WaitForSeconds(spawnDelay); 
+            }
+        }
+
+
+     
     }
     private void UpdateTimer(float currentTime)
     {

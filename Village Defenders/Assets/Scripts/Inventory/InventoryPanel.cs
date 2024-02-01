@@ -1,29 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryPanel : MonoBehaviour
 {
-    public List<ScriptableVegetables> vegetables;
+    public ScriptableVegetables scriptableVegs;
+    public TextMeshProUGUI veggieName;
+    public Image veggieImage;
+    public TextMeshProUGUI moraleGiverText;
+    public TextMeshProUGUI quantityText;
     [SerializeField] Button button;
-    private bool isClicked = false;
-
     private void Start()
     {
         button = GetComponentInChildren<Button>();
-        button.onClick.AddListener(UseVegetable);
+        veggieName.text = scriptableVegs.name;
+        veggieImage.sprite = scriptableVegs.spriteImage;
+        moraleGiverText.text = "Morale " + scriptableVegs.veggieMoraleGiver.ToString();
+        quantityText.text = "Quantity " + scriptableVegs.quantity.ToString();
+        button.onClick.AddListener(UseInventoryItem);
+
     }
-    public void UseVegetable()
+    public void UseInventoryItem()
     {
-        if (vegetables.Count > 0)
-        {
-            Inventory.instance.UseVegetable();
-            isClicked = true;
-            Debug.Log("Vegetable clicked");
-        }
-
+        Inventory.instance.FeedNPC(scriptableVegs.veggieID);
+        Debug.Log("Used Item");
     }
-
 
 }

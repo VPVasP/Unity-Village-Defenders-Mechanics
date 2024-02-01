@@ -14,11 +14,11 @@ public class PopulationManager : MonoBehaviour
     }
     private void Start()
     {
-        populationText.text = "Current Village Population " + population.ToString();
+        populationText.text = "Village Population " + population.ToString();
     }
     public void UpdatePopulationUI()
     {
-        populationText.text = "Current Village Population " + population.ToString();
+        populationText.text = "Village Population " + population.ToString();
     }
 }
 

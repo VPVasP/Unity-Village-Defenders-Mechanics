@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 988725094488837758}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SCALED
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 4012568802187287121}
   - component: {fileID: 8760193241228185471}
   - component: {fileID: 2944138134076705744}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Canon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,9 +132,11 @@ GameObject:
   - component: {fileID: 3491076220928858711}
   - component: {fileID: 5274329536067599053}
   - component: {fileID: -3122256049802953098}
-  m_Layer: 0
+  - component: {fileID: 4174154743291096466}
+  - component: {fileID: 2373272074321595330}
+  m_Layer: 10
   m_Name: DefenceTowerOG
-  m_TagString: Untagged
+  m_TagString: Capsule
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -311,6 +313,50 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4174154743291096466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986981060788291363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18b7fe9afe5577499457e86cfe4257a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  pickupNameLayer: 
+  objectTag: 
+--- !u!54 &2373272074321595330
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986981060788291363}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2990440909194102929
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5157144110112998487}
   - component: {fileID: 4184126909448461714}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Zone1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,7 +421,7 @@ GameObject:
   - component: {fileID: 1488790915468670438}
   - component: {fileID: 5791932567901800662}
   - component: {fileID: 1567925688438295232}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HM_cannon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -456,7 +502,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2013052950786537870}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FirePosition
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -489,7 +535,7 @@ GameObject:
   - component: {fileID: 5151767843181561515}
   - component: {fileID: 3325281063010448795}
   - component: {fileID: 779670045783004521}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HM_cannon1_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

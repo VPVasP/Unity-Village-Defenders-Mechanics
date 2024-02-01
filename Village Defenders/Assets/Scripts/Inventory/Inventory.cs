@@ -55,17 +55,13 @@ public class Inventory : MonoBehaviour
     public void AddVegetableToInventory(ScriptableVegetables vegetable)
     {
         inventoryVegetables.Add(vegetable);
-        
+
     }
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            FeedNPC();
-            feedNpcText.SetActive(false);
-        }
         
+
     }
 
     private void ShowInventory()
@@ -81,8 +77,8 @@ public class Inventory : MonoBehaviour
                 inventorySlotClone.transform.SetParent(inventoryUIPosition);
                 inventorySlotClone.GetComponentInChildren<TextMeshProUGUI>().text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
                 inventorySlotClone.GetComponentInChildren<Image>().sprite = vegetable.spriteImage;
-                //   inventorySlotClone.GetComponent<Vegetable>().vegetable = vegetable;
-                inventorySlotClone.GetComponentInChildren<Button>().onClick.AddListener(() => UseVegetable());
+                  inventorySlotClone.GetComponent<InventoryPanel>().scriptableVegs= vegetable;
+              
 
                 vegetable.isInInventory = true;
             }
@@ -99,6 +95,7 @@ public class Inventory : MonoBehaviour
                 inventorySlotClone.transform.SetParent(inventoryUIPosition);
                 inventorySlotClone.GetComponentInChildren<TextMeshProUGUI>().text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
                 inventorySlotClone.GetComponentInChildren<Image>().sprite = vegetable.spriteImage;
+                inventorySlotClone.GetComponent<InventoryPanel>().scriptableVegs = vegetable;
                 vegetable.isInInventory = true;
             }
             if (vegetable.veggieID == 1 && vegetable.quantity > 1)
@@ -114,6 +111,7 @@ public class Inventory : MonoBehaviour
                 inventorySlotClone.transform.SetParent(inventoryUIPosition);
                 inventorySlotClone.GetComponentInChildren<TextMeshProUGUI>().text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
                 inventorySlotClone.GetComponentInChildren<Image>().sprite = vegetable.spriteImage;
+                inventorySlotClone.GetComponent<InventoryPanel>().scriptableVegs = vegetable;
                 vegetable.isInInventory = true;
             }
             if (vegetable.veggieID == 2 && vegetable.quantity > 1)
@@ -129,6 +127,7 @@ public class Inventory : MonoBehaviour
                 inventorySlotClone.transform.SetParent(inventoryUIPosition);
                 inventorySlotClone.GetComponentInChildren<TextMeshProUGUI>().text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
                 inventorySlotClone.GetComponentInChildren<Image>().sprite = vegetable.spriteImage;
+                inventorySlotClone.GetComponent<InventoryPanel>().scriptableVegs = vegetable;
                 vegetable.isInInventory = true;
             }
             if (vegetable.veggieID == 3 && vegetable.quantity > 1)
@@ -138,26 +137,22 @@ public class Inventory : MonoBehaviour
             }
         }
     }
-    public void UseVegetable()
+   
+    public void FeedNPC(int id)
     {
-        inventoryPanel.SetActive(false);
-        feedNpcText.SetActive(true);
-        canFeedNPC = true;
-        Debug.Log("Use Vegetable");
-    }
-    public void FeedNPC()
-    {
-        if (canFeedNPC)
-        {
+   
             GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
             foreach (GameObject npc in npcs)
             {
-                npc.GetComponent<NPCMorale>().AddMorale(inventoryVegetables[0]);
+                npc.GetComponent<NPCMorale>().AddMorale(inventoryVegetables[id]);
                 npc.GetComponent<NPC>().PlayMoraleAnimation();
                 Debug.Log("Npc got the vegetable");
+               inventoryPanel.SetActive(false);
 
-            }
+
+
+        }
         }
 
     }
-}
+

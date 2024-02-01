@@ -21,6 +21,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
     private float groundDistance = 0.6f;
     [SerializeField] private bool isGrounded;
+    [SerializeField] private GameObject zombieMesh;
     private void Start()
     {
         GameObject[] targetObjects = GameObject.FindGameObjectsWithTag("Wall");
@@ -62,7 +63,6 @@ public class EnemyMovement : MonoBehaviour
         if (closestTarget != null)
         {
             float distanceToTarget = Vector3.Distance(transform.position, closestTarget.position);
-            Debug.Log(distanceToTarget);
             if (distanceToTarget > minimumDistance && isGroundedBool())
             {
                 MoveTowardsTarget(closestTarget.position);
@@ -158,6 +158,7 @@ public class EnemyMovement : MonoBehaviour
         GameObject deathEffectClone = Instantiate(deathEffect, transform.position, Quaternion.identity);
         movementSpeed=0;
         Destroy(deathEffectClone, 0.8f);
+        zombieMesh.SetActive(false);
         Destroy(gameObject, 1f);
         GameManager.instance.EnemyDeathAward(4);
         EnemiesManager.instance.EnemyDeathCount();

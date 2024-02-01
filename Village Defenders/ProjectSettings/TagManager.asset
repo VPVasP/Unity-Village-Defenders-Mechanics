@@ -10,6 +10,9 @@ TagManager:
   - Enemy
   - FxTemporaire
   - NPC
+  - Castle
+  - enemyBug
+  - Pickup
   layers:
   - Default
   - TransparentFX
@@ -21,7 +24,7 @@ TagManager:
   - Ground
   - NPC
   - Obstacle
-  - 
+  - PickObject
   - 
   - 
   - 

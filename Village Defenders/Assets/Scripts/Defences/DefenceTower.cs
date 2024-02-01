@@ -36,7 +36,7 @@ public class DefenceTower : MonoBehaviour
 
             if (closestTarget != null)
             {
-                RotateCanonTowardsTarget(closestTarget.position);
+ 
                 ShootTargets(closestTarget.position);
             }
 
@@ -59,6 +59,9 @@ public class DefenceTower : MonoBehaviour
     {
         anim.SetBool("isShooting", true);
         aud.Play();
+        Vector3 targetDirection = targetPosition - canon.position;
+        Quaternion canonRotation = Quaternion.LookRotation(targetDirection);
+        canon.rotation = canonRotation;
         GameObject shootEffectClone = Instantiate(shootEffect, firePosition.position, Quaternion.identity);
         Vector3 directionToTarget = (targetPosition - firePosition.position).normalized;
         GameObject bulletClone = Instantiate(bullet, firePosition.position, Quaternion.identity);
@@ -67,12 +70,7 @@ public class DefenceTower : MonoBehaviour
         Destroy(bulletClone,3f);
     }
 
-    private void RotateCanonTowardsTarget(Vector3 targetPosition)
-    {
-        Vector3 targetDirection = targetPosition - canon.position;
-        float targetRotationZ = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
-        canon.rotation = Quaternion.Euler(0f, 0f, targetRotationZ);
-    }
+   
 
     private Transform GetClosestTarget(List<Transform> objects)
     {
