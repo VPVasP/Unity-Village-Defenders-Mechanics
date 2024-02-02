@@ -5,14 +5,20 @@ using UnityEngine;
 
 public class DefencePlacementUI : MonoBehaviour
 {
+    public static DefencePlacementUI instance;
     [SerializeField] private DefencePlacement defencePlacement;
     public TextMeshProUGUI NumberText;
     private Canvas canvas;
     private Camera mainCam;
     public TextMeshProUGUI pressKeyText;
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
-       NumberText = GetComponentInChildren<TextMeshProUGUI>();
+        pressKeyText.text = "Press A key to spawn the defence";
+        NumberText = GetComponentInChildren<TextMeshProUGUI>();
        // NumberText.transform.localScale = new Vector3(5, 5, 1);
         NumberText.transform.localRotation = Quaternion.Euler(0f,0f,0f);;
         canvas = GetComponentInChildren<Canvas>();
@@ -31,14 +37,21 @@ public class DefencePlacementUI : MonoBehaviour
     {
         NumberText.text = "";
         pressKeyText.gameObject.SetActive(false);
+        pressKeyText.text = "Press A key to spawn the defence";
         NumberText.gameObject.SetActive(false);
     }
     public void UpdateUiIfPlaced()
     {
-        NumberText.gameObject.SetActive(false);
+        NumberText.gameObject.SetActive(true);
         pressKeyText.gameObject.SetActive(true);
-        pressKeyText.text = "The position with the number " + defencePlacement.keysToSpawn[0] + " is already occupied";
+       
 
+    }
+    public void UpdateText()
+    {
+        pressKeyText.text = "Press A key to spawn the defence";
+        //pressKeyText.gameObject.SetActive(true);
+        NumberText.gameObject.SetActive(false);
     }
     private void Update()
     {
