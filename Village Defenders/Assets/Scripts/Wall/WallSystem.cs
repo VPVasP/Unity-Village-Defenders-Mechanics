@@ -60,7 +60,8 @@ public class WallSystem : MonoBehaviour
     {
 
         aud.Play();
-        gameObject.transform.position += new Vector3(0f, -2.5f * Time.deltaTime, 0f);
+        GameObject wallDestroyedEffectClone = Instantiate(wallDestroyedEffect, transform.position, Quaternion.identity);
+        //gameObject.transform.position += new Vector3(0f, -2.5f * Time.deltaTime, 0f);
         Destroy(gameObject, 4f);
         Debug.Log("Wall destroyed!");
     }

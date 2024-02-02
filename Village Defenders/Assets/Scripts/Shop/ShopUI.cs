@@ -17,6 +17,7 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private GameObject npcShopPanelToSpawn;
     [SerializeField] private GameObject repairWallsPanel;
     [SerializeField] private AudioSource aud;
+    [SerializeField] private GameObject timeSpeedText;
     private void Awake()
     {
         instance = this;
@@ -33,6 +34,7 @@ public class ShopUI : MonoBehaviour
         playerButtosnPanel.SetActive(true);
         repairWallsPanel.SetActive(false);
         npcShopPanelToSpawn.SetActive(false);
+        timeSpeedText.SetActive(true);
     }
     public void EnableVeggiesShopPanel()
     {
@@ -46,6 +48,7 @@ public class ShopUI : MonoBehaviour
         playerButtosnPanel.SetActive(false);
         repairWallsPanel.SetActive(false);
         npcShopPanelToSpawn.SetActive(false);
+        timeSpeedText.SetActive(false);
         aud.Play();
     }
     public void EnableNPCSShopPanel()
@@ -60,6 +63,7 @@ public class ShopUI : MonoBehaviour
         playerButtosnPanel.SetActive(false);
         repairWallsPanel.SetActive(false);
         npcShopPanelToSpawn.SetActive(true);
+        timeSpeedText.SetActive(false);
         aud.Play();
     }
     public void EnableDefencesShopPanel()
@@ -75,6 +79,7 @@ public class ShopUI : MonoBehaviour
         defenceShopPanelToSpawn.SetActive(true);
         repairWallsPanel.SetActive(false);
         npcShopPanelToSpawn.SetActive(false);
+        timeSpeedText.SetActive(false);
         aud.Play();
     }
     public void EnableRepairWallsPanel()
@@ -90,6 +95,7 @@ public class ShopUI : MonoBehaviour
         defenceShopPanelToSpawn.SetActive(false);
         repairWallsPanel.SetActive(true);
         npcShopPanelToSpawn.SetActive(false);
+        timeSpeedText.SetActive(false);
         aud.Play();
     }
     public void ReturnOrEnableGeneralShopPanel()
@@ -104,6 +110,7 @@ public class ShopUI : MonoBehaviour
         playerButtosnPanel.SetActive(false);
         repairWallsPanel.SetActive(false);
         npcShopPanelToSpawn.SetActive(false);
+        timeSpeedText.SetActive(false);
         aud.Play();
     }
     public void ExitShop()
@@ -118,6 +125,7 @@ public class ShopUI : MonoBehaviour
         playerButtosnPanel.SetActive(true);
         repairWallsPanel.SetActive(false);
         npcShopPanelToSpawn.SetActive(false);
+        timeSpeedText.SetActive(true);
         aud.Play();
     }
 }

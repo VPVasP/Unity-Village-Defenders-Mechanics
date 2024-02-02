@@ -9,13 +9,14 @@ public class Inventory : MonoBehaviour
     public static Inventory instance;
     public List<ScriptableVegetables> inventoryVegetables = new List<ScriptableVegetables>();
     [SerializeField] private GameObject inventoryPanel;
-    [SerializeField] private GameObject shopPanel;
     [SerializeField] private GameObject playerPanel;
     [SerializeField] private GameObject farmingPanel;
     [SerializeField] private GameObject enemiesUI;
     [SerializeField] private GameObject playerButtonsPanel;
     [SerializeField] private GameObject inventoryVegetableUI;
+    [SerializeField] private GameObject timeSpeedText;
     [SerializeField] private Transform inventoryUIPosition;
+
     [SerializeField] GameObject feedNpcText;
     private LayerMask npcLayerMask;
     [SerializeField] private bool canFeedNPC;
@@ -39,17 +40,19 @@ public class Inventory : MonoBehaviour
         playerButtonsPanel.SetActive(false);
         feedNpcText.SetActive(false);
         inventoryPanel.SetActive(true);
+        timeSpeedText.SetActive(false);
         ShowInventory();
     }
     public void CloseInventory()
     {
         inventoryPanel.SetActive(false);
-        shopPanel.SetActive(false);
+        ShopUI.instance.ExitShop();
         playerPanel.SetActive(true);
         farmingPanel.SetActive(true);
         enemiesUI.SetActive(false);
         feedNpcText.SetActive(false);
         playerButtonsPanel.SetActive(true);
+        timeSpeedText.SetActive(true);
     }
 
     public void AddVegetableToInventory(ScriptableVegetables vegetable)
@@ -77,7 +80,7 @@ public class Inventory : MonoBehaviour
                 inventorySlotClone.transform.SetParent(inventoryUIPosition);
                 inventorySlotClone.GetComponentInChildren<TextMeshProUGUI>().text = " Vegetable Name " + vegetable.name + " Vegetable Quantity " + vegetable.quantity + " Vegetable Morale Giver " + vegetable.veggieMoraleGiver;
                 inventorySlotClone.GetComponentInChildren<Image>().sprite = vegetable.spriteImage;
-                  inventorySlotClone.GetComponent<InventoryPanel>().scriptableVegs= vegetable;
+                inventorySlotClone.GetComponent<InventoryPanel>().scriptableVegs= vegetable;
               
 
                 vegetable.isInInventory = true;

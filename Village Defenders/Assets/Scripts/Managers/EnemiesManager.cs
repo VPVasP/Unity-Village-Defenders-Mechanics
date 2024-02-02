@@ -80,7 +80,7 @@ public class EnemiesManager : MonoBehaviour
     }
     private IEnumerator SpawnEnemiesWithDelay(int enemiesToBeSpawned)
     {
-        float spawnDelay = 1.0f;
+        float spawnDelay = 0.5f;
 
         for (int i = 0; i < SpawnPositions.Length; i++)
         {
@@ -192,17 +192,80 @@ public class EnemiesManager : MonoBehaviour
                     directionalLight.GetComponent<Light>().color = directionalLightColors[0];
 
                     // Reset the audio clip to village music
-                   
+
                 }
 
                 totalEnemiesText.gameObject.SetActive(false);
                 UpdateTimer(timer);
                 break;
 
-
+        
 
             case 4:
-                timer = 0;
+                timer += Time.deltaTime;
+                float maximumTimeCase4 = 30;
+
+                if (timer < 0)
+                {
+                    timer = 0;
+                }
+                if (timer >= maximumTimeCase4)
+                {
+                    daysPassed += 1;
+                    Debug.Log("Day4Finished");
+                    timer = 0;
+
+                }
+                UpdateTimer(timer); 
+                RenderSettings.skybox = SkyboxMaterials[0]; //we set our skybox material to 0 because it is day
+                directionalLight.GetComponent<Light>().color = directionalLightColors[0];
+                aud.clip = villageMusicAudioClip;
+                aud.Play();
+                totalEnemiesText.gameObject.SetActive(false);
+                break;
+            case 5:
+                dayNightsText.text = daysNightString + daysPassed.ToString();
+                isNight = true;
+
+                if (!hasSpawnedEnemies)
+                {
+                    int randomEnemies = Random.Range(3,8);
+                    EnemySpawner(randomEnemies);
+                    hasSpawnedEnemies = true;
+                }
+
+                timer += Time.deltaTime;
+
+                if (totalEnemiesAlive == 0)
+                {
+                    daysPassed += 1;
+                    dayNightsText.text = daysNightString + daysPassed.ToString();
+                    isNight = false;
+                    RenderSettings.skybox = SkyboxMaterials[0];
+                    directionalLight.GetComponent<Light>().color = directionalLightColors[0];
+
+                    // Reset the audio clip to village music
+
+                }
+
+                totalEnemiesText.gameObject.SetActive(false);
+                UpdateTimer(timer);
+                break;
+            case 6:
+                timer += Time.deltaTime;
+                float maximumTimeCase6 = 25;
+
+                if (timer < 0)
+                {
+                    timer = 0;
+                }
+                if (timer >= maximumTimeCase6)
+                {
+                    daysPassed += 1;
+                    Debug.Log("Day6Finished");
+                    timer = 0;
+
+                }
                 UpdateTimer(timer);
                 RenderSettings.skybox = SkyboxMaterials[0]; //we set our skybox material to 0 because it is day
                 directionalLight.GetComponent<Light>().color = directionalLightColors[0];
@@ -210,7 +273,34 @@ public class EnemiesManager : MonoBehaviour
                 aud.Play();
                 totalEnemiesText.gameObject.SetActive(false);
                 break;
+            case 7:
+                dayNightsText.text = daysNightString + daysPassed.ToString();
+                isNight = true;
 
+                if (!hasSpawnedEnemies)
+                {
+                    int randomEnemies = Random.Range(3, 8);
+                    EnemySpawner(randomEnemies);
+                    hasSpawnedEnemies = true;
+                }
+
+                timer += Time.deltaTime;
+
+                if (totalEnemiesAlive == 0)
+                {
+                    daysPassed += 1;
+                    dayNightsText.text = daysNightString + daysPassed.ToString();
+                    isNight = false;
+                    RenderSettings.skybox = SkyboxMaterials[0];
+                    directionalLight.GetComponent<Light>().color = directionalLightColors[0];
+
+                    // Reset the audio clip to village music
+
+                }
+
+                totalEnemiesText.gameObject.SetActive(false);
+                UpdateTimer(timer);
+                break;
             default:
 
                 break;

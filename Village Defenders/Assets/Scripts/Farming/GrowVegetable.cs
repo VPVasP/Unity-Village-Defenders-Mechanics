@@ -13,7 +13,7 @@ public class GrowVegetable : MonoBehaviour,IVegetable
 
     [Header("Vegetables")]
     public ScriptableVegetables scriptableveg;
-   [SerializeField] private GameObject growVegetableText;
+    [SerializeField] private GameObject growVegetableText;
     private GameObject growVegetablePanel;
     private string veggieName;
 

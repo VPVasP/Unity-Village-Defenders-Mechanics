@@ -105,7 +105,7 @@ MonoBehaviour:
   scriptableveg: {fileID: 11400000, guid: d2ac5bd5989f27547bc3a47378b46deb, type: 2}
   growVegetableText: {fileID: 8959249388204261315, guid: abb2589da46697d4295d4bb5683315c6, type: 3}
   aud: {fileID: 0}
-  veggieSoundEffect: {fileID: 0}
+  veggieSoundEffect: {fileID: 8300000, guid: 3b945d0a9c17dc64eb80224c6e262cd6, type: 3}
   groundDistance: 0.6
   mudMask:
     serializedVersion: 2
