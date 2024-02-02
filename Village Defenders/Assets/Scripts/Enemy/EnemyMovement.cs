@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
     public List<Transform> targets;
-    private Rigidbody rb;
     [Header("Values")]
     [SerializeField] private float movementSpeed = 5f;
     [SerializeField] private float minimumDistance;
@@ -22,6 +22,7 @@ public class EnemyMovement : MonoBehaviour
     private float groundDistance = 0.6f;
     [SerializeField] private bool isGrounded;
     [SerializeField] private GameObject zombieMesh;
+    private NavMeshAgent agent;
     private void Start()
     {
         GameObject[] targetObjects = GameObject.FindGameObjectsWithTag("Wall");
@@ -32,23 +33,20 @@ public class EnemyMovement : MonoBehaviour
             targets.Add(targetObject.transform);
         }
 
-        if (rb == null)
-        {
-            rb = gameObject.AddComponent<Rigidbody>();
-        }
+
 
         if (aud == null)
         {
             aud = gameObject.AddComponent<AudioSource>();
         }
 
-        rb = GetComponent<Rigidbody>();
+
         aud = GetComponent<AudioSource>();
         aud.playOnAwake = false;
         aud.loop = false;
 
         anim = GetComponentInChildren<Animator>();
-
+        agent = GetComponent<NavMeshAgent>();
         gameObject.tag = "Enemy";
         groundMask = 1 << LayerMask.NameToLayer("Ground");
     }
@@ -94,9 +92,12 @@ public class EnemyMovement : MonoBehaviour
     }
     public void MoveTowardsTarget(Vector3 targetPosition)
     {
-        Vector3 direction = (targetPosition - transform.position).normalized;
-        rb.AddForce(direction * movementSpeed);
-        anim.SetBool("isRunning", true);
+        
+            agent.SetDestination(targetPosition);
+            anim.SetBool("isRunning", true);
+        
+
+
     }
     private void RotateEnemy(Vector3 targetPosition)
     {
@@ -110,7 +111,7 @@ public class EnemyMovement : MonoBehaviour
         if (Time.time >= nextAttackTime && closestTarget != null)
             {
                 Debug.Log("Attack");
-                rb.velocity = Vector3.zero;
+
 
                 anim.SetBool("isRunning", false);
                 anim.SetTrigger("Attack");
