@@ -15,15 +15,15 @@ public class DefenceTower : MonoBehaviour
     [SerializeField] private GameObject[] targetObjects;
     private void Start()
     {
-        anim = GetComponent<Animator>();
+      //anim = GetComponent<Animator>();
         aud = GetComponent<AudioSource>();
         StartCoroutine(ShootTargetsRoutine());
     }
     private void Update()
     {
-        if (targetObjects.Length==0)
-        {
-            anim.SetBool("isShooting", false);
+       if (targetObjects.Length == 0)
+       {
+         
         }
     }
     private IEnumerator ShootTargetsRoutine()
@@ -36,7 +36,7 @@ public class DefenceTower : MonoBehaviour
 
             if (closestTarget != null)
             {
- 
+                RotateCannonTowardsTarget(closestTarget.position);
                 ShootTargets(closestTarget.position);
             }
 
@@ -57,20 +57,22 @@ public class DefenceTower : MonoBehaviour
 
     private void ShootTargets(Vector3 targetPosition)
     {
-        anim.SetBool("isShooting", true);
+       // anim.SetBool("isShooting", true);
         aud.Play();
         Vector3 targetDirection = targetPosition - canon.position;
-        Quaternion canonRotation = Quaternion.LookRotation(targetDirection);
-        canon.rotation = canonRotation;
         GameObject shootEffectClone = Instantiate(shootEffect, firePosition.position, Quaternion.identity);
         Vector3 directionToTarget = (targetPosition - firePosition.position).normalized;
+        Quaternion canonRotation = Quaternion.LookRotation(directionToTarget);
+        canon.rotation = canonRotation;
         GameObject bulletClone = Instantiate(bullet, firePosition.position, Quaternion.identity);
         bulletClone.GetComponent<Rigidbody>().velocity = directionToTarget * 300;
         Destroy(shootEffectClone, 1f);
         Destroy(bulletClone,3f);
     }
-
-   
+    private void RotateCannonTowardsTarget(Vector3 targetPosition)
+    {
+        firePosition.LookAt(targetPosition);
+    }
 
     private Transform GetClosestTarget(List<Transform> objects)
     {
