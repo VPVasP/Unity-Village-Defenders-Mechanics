@@ -80,7 +80,6 @@ public class GrowVegetable : MonoBehaviour,IVegetable
             gameObject.transform.position = new Vector3(gameObject.transform.position.z, gameObject.transform.position.y + 0.2f, gameObject.transform.position.z);
             Destroy(growVegetablePanel, 1.5f);
             Destroy(this.gameObject, 1.5f);
-            scriptableveg.isInInventory = true;
             Inventory.instance.AddVegetableToInventory(scriptableveg);
          
             

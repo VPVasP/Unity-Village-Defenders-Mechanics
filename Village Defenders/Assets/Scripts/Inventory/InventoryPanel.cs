@@ -12,7 +12,8 @@ public class InventoryPanel : MonoBehaviour
     public TextMeshProUGUI moraleGiverText;
     public TextMeshProUGUI quantityText;
     [SerializeField] Button button;
-    private int addedQuantity;
+    [SerializeField] private int addedQuantity;
+    [SerializeField] private GameObject inventory;
     private void Start()
     {
         button = GetComponentInChildren<Button>();
@@ -22,6 +23,7 @@ public class InventoryPanel : MonoBehaviour
         quantityText.text = "Quantity " + scriptableVegs.quantity.ToString();
         button.onClick.AddListener(UseInventoryItem);
         addedQuantity = scriptableVegs.quantity;
+        inventory = GameObject.Find("Inventory");
     }
     private void Update()
     {
@@ -35,13 +37,22 @@ public class InventoryPanel : MonoBehaviour
 
            addedQuantity= scriptableVegs.quantity;
         }
+        if (scriptableVegs.quantity==0)
+        {
+           inventory.gameObject.SetActive(true);
+            Debug.Log("Gameobject Destroyed");
+            Destroy(this.gameObject);
+        }
     }
-
+    
     public void UseInventoryItem()
     {
-        Inventory.instance.FeedNPC(scriptableVegs.veggieID);
-        Inventory.instance.inventoryVegetables.Remove(scriptableVegs);
-        Debug.Log("Used Item");
+            scriptableVegs.quantity -= 1;
+            Inventory.instance.FeedNPC(scriptableVegs.veggieID);
+            Debug.Log("Used Item");
+        
+      
+
     }
 
 }

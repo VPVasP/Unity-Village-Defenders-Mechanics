@@ -26,7 +26,6 @@ public class FarmingManager : MonoBehaviour
         foreach(ScriptableVegetables scriptableVegetables in vegetableScriptable)
         {
             scriptableVegetables.quantity = 0;
-            scriptableVegetables.isInInventory = false;
         }
     }
 

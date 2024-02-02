@@ -68,12 +68,14 @@ public class Inventory : MonoBehaviour
                 npc.GetComponent<NPCMorale>().AddMorale(inventoryVegetables[id]);
                 npc.GetComponent<NPC>().PlayMoraleAnimation();
                 Debug.Log("Npc got the vegetable");
-               inventoryPanel.SetActive(false);
-
-
+            inventoryVegetables[id] -= 1;
+            Invoke("DisableInventory", 0.2f);
 
         }
         }
-
+    private void DisableInventory()
+    {
+        inventoryPanel.SetActive(false);
+    }
     }
 
