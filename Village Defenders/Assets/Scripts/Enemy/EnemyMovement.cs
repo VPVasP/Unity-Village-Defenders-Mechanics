@@ -92,12 +92,11 @@ public class EnemyMovement : MonoBehaviour
     }
     public void MoveTowardsTarget(Vector3 targetPosition)
     {
-        
-            agent.SetDestination(targetPosition);
-            anim.SetBool("isRunning", true);
-        
+        Vector3 randomOffset = new Vector3(Random.Range(-10f,10f), 0f, Random.Range(-10f,10f));
+        Vector3 adjustedTarget = targetPosition + randomOffset;
 
-
+        agent.SetDestination(adjustedTarget);
+        anim.SetBool("isRunning", true);
     }
     private void RotateEnemy(Vector3 targetPosition)
     {

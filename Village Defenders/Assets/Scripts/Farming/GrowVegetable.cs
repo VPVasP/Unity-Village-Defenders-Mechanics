@@ -16,11 +16,11 @@ public class GrowVegetable : MonoBehaviour,IVegetable
     [SerializeField] private GameObject growVegetableText;
     private GameObject growVegetablePanel;
     private string veggieName;
-
+   [SerializeField] private Transform inventoryUIPosition;
     [Header("Audio")]
     [SerializeField] private AudioSource aud;
     [SerializeField] private AudioClip veggieSoundEffect;
-
+    public GameObject inventoryPanel;
     private RaycastHit hit;
     private bool readytoHarvest = false;
     [SerializeField] float groundDistance = 0.6f; //the ground distance value
@@ -80,12 +80,20 @@ public class GrowVegetable : MonoBehaviour,IVegetable
             gameObject.transform.position = new Vector3(gameObject.transform.position.z, gameObject.transform.position.y + 0.2f, gameObject.transform.position.z);
             Destroy(growVegetablePanel, 1.5f);
             Destroy(this.gameObject, 1.5f);
+            scriptableveg.isInInventory = true;
             Inventory.instance.AddVegetableToInventory(scriptableveg);
+         
+            
         }
     }
 
     private void Update()
     {
+
+
+
+        inventoryUIPosition = Inventory.instance.inventoryUIPosition;
+        
         //we grow the vegetable if not fully grown
         if (currentScale < maxScale)
         {
@@ -103,6 +111,15 @@ public class GrowVegetable : MonoBehaviour,IVegetable
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
+                if (!Inventory.instance.inventoryVegetables.Contains(scriptableveg))
+                {
+                    GameObject inventoryPanelClone = Instantiate(inventoryPanel, inventoryUIPosition.position, Quaternion.identity);
+                    inventoryPanelClone.transform.SetParent(inventoryUIPosition);
+                }
+                else if (Inventory.instance.inventoryVegetables.Contains(scriptableveg))
+                {
+                    Debug.Log("vegetable already exists" + scriptableveg.name);
+                }
                 Harvest();
             }
         }

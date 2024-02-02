@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Inventory Veggie Info
+  m_text: ' Vegetable Name Apple Vegetable Quantity 1 Vegetable Morale Giver 5'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d411bd75e849a3b4fa096521a59179bd, type: 2}
   m_sharedMaterial: {fileID: -8467784329739723033, guid: d411bd75e849a3b4fa096521a59179bd, type: 2}
@@ -623,7 +623,7 @@ GameObject:
   - component: {fileID: 4677890554357595473}
   - component: {fileID: 2145505903589968989}
   m_Layer: 5
-  m_Name: InventoryPanel
+  m_Name: AppleInventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -638,7 +638,7 @@ RectTransform:
   m_GameObject: {fileID: 6635109898210563919}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8158630774711376030}
@@ -669,7 +669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd9e55021f5f73f4abd2dd4a25ccb782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptableVegs: {fileID: 0}
+  scriptableVegs: {fileID: 11400000, guid: 1a723540785d6e3439e3bddca6cb38b3, type: 2}
   veggieName: {fileID: 3704417911390276548}
   veggieImage: {fileID: 5121800667364834949}
   moraleGiverText: {fileID: 530022893048409514}
@@ -745,7 +745,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2b0d4e7bf344774459d025e4c723ba78, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f8a90cf13eb6b4948b7a7e8b2250ab38, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
