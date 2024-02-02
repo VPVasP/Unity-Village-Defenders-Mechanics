@@ -16,6 +16,7 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private GameObject defenceShopPanelToSpawn;
     [SerializeField] private GameObject npcShopPanelToSpawn;
     [SerializeField] private GameObject repairWallsPanel;
+    [SerializeField] private AudioSource aud;
     private void Awake()
     {
         instance = this;
@@ -45,6 +46,7 @@ public class ShopUI : MonoBehaviour
         playerButtosnPanel.SetActive(false);
         repairWallsPanel.SetActive(false);
         npcShopPanelToSpawn.SetActive(false);
+        aud.Play();
     }
     public void EnableNPCSShopPanel()
     {
@@ -58,6 +60,7 @@ public class ShopUI : MonoBehaviour
         playerButtosnPanel.SetActive(false);
         repairWallsPanel.SetActive(false);
         npcShopPanelToSpawn.SetActive(true);
+        aud.Play();
     }
     public void EnableDefencesShopPanel()
     {
@@ -72,6 +75,7 @@ public class ShopUI : MonoBehaviour
         defenceShopPanelToSpawn.SetActive(true);
         repairWallsPanel.SetActive(false);
         npcShopPanelToSpawn.SetActive(false);
+        aud.Play();
     }
     public void EnableRepairWallsPanel()
     {
@@ -86,6 +90,7 @@ public class ShopUI : MonoBehaviour
         defenceShopPanelToSpawn.SetActive(false);
         repairWallsPanel.SetActive(true);
         npcShopPanelToSpawn.SetActive(false);
+        aud.Play();
     }
     public void ReturnOrEnableGeneralShopPanel()
     {
@@ -99,6 +104,7 @@ public class ShopUI : MonoBehaviour
         playerButtosnPanel.SetActive(false);
         repairWallsPanel.SetActive(false);
         npcShopPanelToSpawn.SetActive(false);
+        aud.Play();
     }
     public void ExitShop()
     {
@@ -112,5 +118,6 @@ public class ShopUI : MonoBehaviour
         playerButtosnPanel.SetActive(true);
         repairWallsPanel.SetActive(false);
         npcShopPanelToSpawn.SetActive(false);
+        aud.Play();
     }
 }
