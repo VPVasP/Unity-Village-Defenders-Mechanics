@@ -637,6 +637,7 @@ GameObject:
   - component: {fileID: 4710767764480870886}
   - component: {fileID: 2041099650820584236}
   - component: {fileID: 246283717702470721}
+  - component: {fileID: 7447952892306419229}
   m_Layer: 0
   m_Name: StrongestVillager
   m_TagString: Untagged
@@ -700,7 +701,7 @@ MonoBehaviour:
   obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  obstacleDetectionDistance: 2
+  obstacleDetectionDistance: 9
 --- !u!114 &2041099650820584236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -823,6 +824,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &7447952892306419229
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6779792548083025311}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.28
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &7416942376045929037
 PrefabInstance:
   m_ObjectHideFlags: 0
