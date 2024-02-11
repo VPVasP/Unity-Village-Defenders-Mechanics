@@ -14,7 +14,8 @@ public class NPC : MonoBehaviour
     private Transform mainCamera;
     [SerializeField] private float npcRotateSpeed = 180;
     private LayerMask npcLayerMask;
-    private NavMeshAgent navMeshAgent;
+    public NavMeshAgent navMeshAgent;
+    public bool canWalkAround;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -30,14 +31,26 @@ public class NPC : MonoBehaviour
         npcRotateSpeed = 180f;
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.stoppingDistance = 0.1f;
+        canWalkAround = true;
     }
 
-    void Update()
+   void Update()
+{
+    if (canWalkAround)
     {
         MoveTowardsTarget();
-        CanvasFaceCamera();
-
     }
+    else if(!canWalkAround)
+    {
+            npcWalkSpeed = 0;
+            navMeshAgent.speed = 0;
+            navMeshAgent.acceleration = 0;
+            navMeshAgent.angularSpeed = 0;
+        Debug.Log("stopped walking around");
+    }
+
+    CanvasFaceCamera();
+}
 
     private void MoveTowardsTarget()
     {
@@ -57,6 +70,7 @@ public class NPC : MonoBehaviour
 
 
     }
+
     private void CanvasFaceCamera()
     {
         canvas.transform.LookAt(canvas.transform.position + mainCamera.rotation * Vector3.forward,

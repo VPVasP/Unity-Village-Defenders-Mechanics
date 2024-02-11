@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 820823851650113126}
   - component: {fileID: 5113059539894595727}
   m_Layer: 0
-  m_Name: WallCanvas
+  m_Name: WallCanvas - Copy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

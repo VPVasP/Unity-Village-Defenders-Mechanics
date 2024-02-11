@@ -18,5 +18,4 @@ MonoBehaviour:
   veggieID: 0
   veggieMoraleGiver: 5
   veggiePrefab: {fileID: 1829371231341652, guid: 426b44a7575f71e479fab4f4e8431989, type: 3}
-  quantity: 0
-  isInInventory: 0
+  quantity: 5

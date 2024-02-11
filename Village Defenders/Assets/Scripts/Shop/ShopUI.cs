@@ -17,6 +17,7 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private GameObject npcShopPanelToSpawn;
     [SerializeField] private GameObject repairWallsPanel;
     [SerializeField] private AudioSource aud;
+    [SerializeField] private GameObject VeggiesShopObject;
     [SerializeField] private GameObject timeSpeedText;
     private void Awake()
     {
@@ -35,6 +36,7 @@ public class ShopUI : MonoBehaviour
         repairWallsPanel.SetActive(false);
         npcShopPanelToSpawn.SetActive(false);
         timeSpeedText.SetActive(true);
+        VeggiesShopObject.SetActive(false);
     }
     public void EnableVeggiesShopPanel()
     {
@@ -49,6 +51,7 @@ public class ShopUI : MonoBehaviour
         repairWallsPanel.SetActive(false);
         npcShopPanelToSpawn.SetActive(false);
         timeSpeedText.SetActive(false);
+        VeggiesShopObject.SetActive(true);
         aud.Play();
     }
     public void EnableNPCSShopPanel()
@@ -64,6 +67,7 @@ public class ShopUI : MonoBehaviour
         repairWallsPanel.SetActive(false);
         npcShopPanelToSpawn.SetActive(true);
         timeSpeedText.SetActive(false);
+        VeggiesShopObject.SetActive(false);
         aud.Play();
     }
     public void EnableDefencesShopPanel()
@@ -80,6 +84,7 @@ public class ShopUI : MonoBehaviour
         repairWallsPanel.SetActive(false);
         npcShopPanelToSpawn.SetActive(false);
         timeSpeedText.SetActive(false);
+        VeggiesShopObject.SetActive(false);
         aud.Play();
     }
     public void EnableRepairWallsPanel()
@@ -96,6 +101,7 @@ public class ShopUI : MonoBehaviour
         repairWallsPanel.SetActive(true);
         npcShopPanelToSpawn.SetActive(false);
         timeSpeedText.SetActive(false);
+        VeggiesShopObject.SetActive(false);
         aud.Play();
     }
     public void ReturnOrEnableGeneralShopPanel()
@@ -111,6 +117,7 @@ public class ShopUI : MonoBehaviour
         repairWallsPanel.SetActive(false);
         npcShopPanelToSpawn.SetActive(false);
         timeSpeedText.SetActive(false);
+        VeggiesShopObject.SetActive(false);
         aud.Play();
     }
     public void ExitShop()
@@ -126,6 +133,7 @@ public class ShopUI : MonoBehaviour
         repairWallsPanel.SetActive(false);
         npcShopPanelToSpawn.SetActive(false);
         timeSpeedText.SetActive(true);
+        VeggiesShopObject.SetActive(false);
         aud.Play();
     }
 }

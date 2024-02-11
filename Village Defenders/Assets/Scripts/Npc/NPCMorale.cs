@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class NPCMorale : MonoBehaviour
@@ -88,6 +89,8 @@ public class NPCMorale : MonoBehaviour
             isDead = true;
             moraleImage.sprite = moraleSprites[4];
             anim.SetTrigger("Dead");
+            gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            gameObject.GetComponent<NavMeshAgent>().enabled = false;
             npcMovement.enabled = false;
             PopulationManager.instace.population -= 1;
             PopulationManager.instace.UpdatePopulationUI();

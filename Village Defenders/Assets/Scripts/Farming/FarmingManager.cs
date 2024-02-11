@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FarmingManager : MonoBehaviour
 {
     public static FarmingManager instance;
     public LayerMask mudMask;
+    public LayerMask npcMask;
     public RaycastHit hit;
     public ScriptableVegetables[] vegetableScriptable;
     [SerializeField] private Vector3 ypos = new Vector3(0,0.5f, 0);
+    [SerializeField]  private bool canPlantVegetable;
+    public NPC npcMovement;
     private void Awake()
     {
         if (instance == null)
@@ -27,27 +31,33 @@ public class FarmingManager : MonoBehaviour
         {
             scriptableVegetables.quantity = 0;
         }
+     
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, mudMask))
+        
+            if (Input.GetMouseButtonDown(1))
             {
-                Mud mud = hit.collider.GetComponent<Mud>();
-                if (mud != null && mud.CanBePlanted())
-                {
+                Ray FarmRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                    ShopUI.instance.EnableVeggiesShopPanel();
+                if (Physics.Raycast(FarmRay, out hit, Mathf.Infinity, mudMask))
+                {
+                    Mud mud = hit.collider.GetComponent<Mud>();
+                    if (mud != null && mud.CanBePlanted())
+                    {
+
+                        ShopUI.instance.EnableVeggiesShopPanel();
+                        //npcMovement.navMeshAgent.
+                    }
                 }
+
             }
 
         }
-
-    }
+    
+   
+   
     public void PlantVegetable(int id)
     {
         if (hit.collider != null)
@@ -60,6 +70,8 @@ public class FarmingManager : MonoBehaviour
                 GameObject vegetable = Instantiate(vegetableScriptable[id].veggiePrefab, pos, Quaternion.identity);
 
                 mud.canBePlanted = false;
+
+                Debug.Log("farmed veggie");
             }
               
 
