@@ -1,5 +1,5 @@
 # Village Defenders Mechanics Implement by me
-Village Defenders was a group project for my CMN6204.S1 College Assigment. I was responsible for the creation of many in game mechanics and system that i will showcase in this Github Repository.
+Village Defenders was a group project for my CMN6204.S1 College Assigment. I was responsible for the creation of many in game mechanics and systems that i will showcase in this Github Repository.
 
 ## Village Defenders-Mechanics Implement by me:
 1. Game Manager: Management of Shop Elements in the game.
